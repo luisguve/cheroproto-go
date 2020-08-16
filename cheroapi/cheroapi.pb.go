@@ -303,82 +303,6 @@ func (m *ContentData) GetMetadata() *ContentMetadata {
 	return nil
 }
 
-// UserHeaderData holds information to be displayed in the header navigation section
-// of every page.
-type UserHeaderData struct {
-	Alias    string `protobuf:"bytes,1,opt,name=alias,proto3" json:"alias,omitempty"`
-	Username string `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	// unread notifications of this user.
-	UnreadNotifs []*dataformat.Notif `protobuf:"bytes,3,rep,name=unread_notifs,json=unreadNotifs,proto3" json:"unread_notifs,omitempty"`
-	// read notifications of this user.
-	ReadNotifs []*dataformat.Notif `protobuf:"bytes,4,rep,name=read_notifs,json=readNotifs,proto3" json:"read_notifs,omitempty"`
-	// last time this user created a thread
-	LastTimeCreated      *timestamp.Timestamp `protobuf:"bytes,5,opt,name=last_time_created,json=lastTimeCreated,proto3" json:"last_time_created,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *UserHeaderData) Reset()         { *m = UserHeaderData{} }
-func (m *UserHeaderData) String() string { return proto.CompactTextString(m) }
-func (*UserHeaderData) ProtoMessage()    {}
-func (*UserHeaderData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{4}
-}
-
-func (m *UserHeaderData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserHeaderData.Unmarshal(m, b)
-}
-func (m *UserHeaderData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserHeaderData.Marshal(b, m, deterministic)
-}
-func (m *UserHeaderData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserHeaderData.Merge(m, src)
-}
-func (m *UserHeaderData) XXX_Size() int {
-	return xxx_messageInfo_UserHeaderData.Size(m)
-}
-func (m *UserHeaderData) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserHeaderData.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UserHeaderData proto.InternalMessageInfo
-
-func (m *UserHeaderData) GetAlias() string {
-	if m != nil {
-		return m.Alias
-	}
-	return ""
-}
-
-func (m *UserHeaderData) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *UserHeaderData) GetUnreadNotifs() []*dataformat.Notif {
-	if m != nil {
-		return m.UnreadNotifs
-	}
-	return nil
-}
-
-func (m *UserHeaderData) GetReadNotifs() []*dataformat.Notif {
-	if m != nil {
-		return m.ReadNotifs
-	}
-	return nil
-}
-
-func (m *UserHeaderData) GetLastTimeCreated() *timestamp.Timestamp {
-	if m != nil {
-		return m.LastTimeCreated
-	}
-	return nil
-}
-
 // NotifyUser maps notifications to users.
 type NotifyUser struct {
 	UserId               string            `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -392,7 +316,7 @@ func (m *NotifyUser) Reset()         { *m = NotifyUser{} }
 func (m *NotifyUser) String() string { return proto.CompactTextString(m) }
 func (*NotifyUser) ProtoMessage()    {}
 func (*NotifyUser) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{5}
+	return fileDescriptor_b3591c2d7d53bb31, []int{4}
 }
 
 func (m *NotifyUser) XXX_Unmarshal(b []byte) error {
@@ -450,7 +374,7 @@ func (m *ContentPattern) Reset()         { *m = ContentPattern{} }
 func (m *ContentPattern) String() string { return proto.CompactTextString(m) }
 func (*ContentPattern) ProtoMessage()    {}
 func (*ContentPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{6}
+	return fileDescriptor_b3591c2d7d53bb31, []int{5}
 }
 
 func (m *ContentPattern) XXX_Unmarshal(b []byte) error {
@@ -546,7 +470,7 @@ func (m *GeneralPattern) Reset()         { *m = GeneralPattern{} }
 func (m *GeneralPattern) String() string { return proto.CompactTextString(m) }
 func (*GeneralPattern) ProtoMessage()    {}
 func (*GeneralPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{7}
+	return fileDescriptor_b3591c2d7d53bb31, []int{6}
 }
 
 func (m *GeneralPattern) XXX_Unmarshal(b []byte) error {
@@ -600,7 +524,7 @@ func (m *SavedPattern) Reset()         { *m = SavedPattern{} }
 func (m *SavedPattern) String() string { return proto.CompactTextString(m) }
 func (*SavedPattern) ProtoMessage()    {}
 func (*SavedPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{8}
+	return fileDescriptor_b3591c2d7d53bb31, []int{7}
 }
 
 func (m *SavedPattern) XXX_Unmarshal(b []byte) error {
@@ -654,7 +578,7 @@ func (m *IdList) Reset()         { *m = IdList{} }
 func (m *IdList) String() string { return proto.CompactTextString(m) }
 func (*IdList) ProtoMessage()    {}
 func (*IdList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{9}
+	return fileDescriptor_b3591c2d7d53bb31, []int{8}
 }
 
 func (m *IdList) XXX_Unmarshal(b []byte) error {
@@ -706,7 +630,7 @@ func (m *ActivityPattern) Reset()         { *m = ActivityPattern{} }
 func (m *ActivityPattern) String() string { return proto.CompactTextString(m) }
 func (*ActivityPattern) ProtoMessage()    {}
 func (*ActivityPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{10}
+	return fileDescriptor_b3591c2d7d53bb31, []int{9}
 }
 
 func (m *ActivityPattern) XXX_Unmarshal(b []byte) error {
@@ -798,7 +722,7 @@ func (m *UserList) Reset()         { *m = UserList{} }
 func (m *UserList) String() string { return proto.CompactTextString(m) }
 func (*UserList) ProtoMessage()    {}
 func (*UserList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{11}
+	return fileDescriptor_b3591c2d7d53bb31, []int{10}
 }
 
 func (m *UserList) XXX_Unmarshal(b []byte) error {
@@ -845,7 +769,7 @@ func (m *ContentRule) Reset()         { *m = ContentRule{} }
 func (m *ContentRule) String() string { return proto.CompactTextString(m) }
 func (*ContentRule) ProtoMessage()    {}
 func (*ContentRule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{12}
+	return fileDescriptor_b3591c2d7d53bb31, []int{11}
 }
 
 func (m *ContentRule) XXX_Unmarshal(b []byte) error {
@@ -958,7 +882,7 @@ func (m *UpvoteRequest) Reset()         { *m = UpvoteRequest{} }
 func (m *UpvoteRequest) String() string { return proto.CompactTextString(m) }
 func (*UpvoteRequest) ProtoMessage()    {}
 func (*UpvoteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{13}
+	return fileDescriptor_b3591c2d7d53bb31, []int{12}
 }
 
 func (m *UpvoteRequest) XXX_Unmarshal(b []byte) error {
@@ -1064,7 +988,7 @@ func (m *UndoUpvoteRequest) Reset()         { *m = UndoUpvoteRequest{} }
 func (m *UndoUpvoteRequest) String() string { return proto.CompactTextString(m) }
 func (*UndoUpvoteRequest) ProtoMessage()    {}
 func (*UndoUpvoteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{14}
+	return fileDescriptor_b3591c2d7d53bb31, []int{13}
 }
 
 func (m *UndoUpvoteRequest) XXX_Unmarshal(b []byte) error {
@@ -1161,7 +1085,7 @@ func (m *UndoUpvoteResponse) Reset()         { *m = UndoUpvoteResponse{} }
 func (m *UndoUpvoteResponse) String() string { return proto.CompactTextString(m) }
 func (*UndoUpvoteResponse) ProtoMessage()    {}
 func (*UndoUpvoteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{15}
+	return fileDescriptor_b3591c2d7d53bb31, []int{14}
 }
 
 func (m *UndoUpvoteResponse) XXX_Unmarshal(b []byte) error {
@@ -1204,7 +1128,7 @@ func (m *CommentRequest) Reset()         { *m = CommentRequest{} }
 func (m *CommentRequest) String() string { return proto.CompactTextString(m) }
 func (*CommentRequest) ProtoMessage()    {}
 func (*CommentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{16}
+	return fileDescriptor_b3591c2d7d53bb31, []int{15}
 }
 
 func (m *CommentRequest) XXX_Unmarshal(b []byte) error {
@@ -1317,7 +1241,7 @@ func (m *DeleteContentRequest) Reset()         { *m = DeleteContentRequest{} }
 func (m *DeleteContentRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteContentRequest) ProtoMessage()    {}
 func (*DeleteContentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{17}
+	return fileDescriptor_b3591c2d7d53bb31, []int{16}
 }
 
 func (m *DeleteContentRequest) XXX_Unmarshal(b []byte) error {
@@ -1414,7 +1338,7 @@ func (m *DeleteContentResponse) Reset()         { *m = DeleteContentResponse{} }
 func (m *DeleteContentResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteContentResponse) ProtoMessage()    {}
 func (*DeleteContentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{18}
+	return fileDescriptor_b3591c2d7d53bb31, []int{17}
 }
 
 func (m *DeleteContentResponse) XXX_Unmarshal(b []byte) error {
@@ -1450,7 +1374,7 @@ func (m *CreateThreadRequest) Reset()         { *m = CreateThreadRequest{} }
 func (m *CreateThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateThreadRequest) ProtoMessage()    {}
 func (*CreateThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{19}
+	return fileDescriptor_b3591c2d7d53bb31, []int{18}
 }
 
 func (m *CreateThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1504,7 +1428,7 @@ func (m *CreateThreadResponse) Reset()         { *m = CreateThreadResponse{} }
 func (m *CreateThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateThreadResponse) ProtoMessage()    {}
 func (*CreateThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{20}
+	return fileDescriptor_b3591c2d7d53bb31, []int{19}
 }
 
 func (m *CreateThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -1532,149 +1456,6 @@ func (m *CreateThreadResponse) GetPermalink() string {
 	return ""
 }
 
-// GetBasicUserDataRequest holds the id of the user to get its basic data
-type GetBasicUserDataRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetBasicUserDataRequest) Reset()         { *m = GetBasicUserDataRequest{} }
-func (m *GetBasicUserDataRequest) String() string { return proto.CompactTextString(m) }
-func (*GetBasicUserDataRequest) ProtoMessage()    {}
-func (*GetBasicUserDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{21}
-}
-
-func (m *GetBasicUserDataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetBasicUserDataRequest.Unmarshal(m, b)
-}
-func (m *GetBasicUserDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetBasicUserDataRequest.Marshal(b, m, deterministic)
-}
-func (m *GetBasicUserDataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetBasicUserDataRequest.Merge(m, src)
-}
-func (m *GetBasicUserDataRequest) XXX_Size() int {
-	return xxx_messageInfo_GetBasicUserDataRequest.Size(m)
-}
-func (m *GetBasicUserDataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetBasicUserDataRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetBasicUserDataRequest proto.InternalMessageInfo
-
-func (m *GetBasicUserDataRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-// UpdateBasicUserDataRequest holds public data of a user that could be updated.
-type UpdateBasicUserDataRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Username             string   `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	PicUrl               string   `protobuf:"bytes,4,opt,name=pic_url,json=picUrl,proto3" json:"pic_url,omitempty"`
-	Alias                string   `protobuf:"bytes,5,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateBasicUserDataRequest) Reset()         { *m = UpdateBasicUserDataRequest{} }
-func (m *UpdateBasicUserDataRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateBasicUserDataRequest) ProtoMessage()    {}
-func (*UpdateBasicUserDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{22}
-}
-
-func (m *UpdateBasicUserDataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateBasicUserDataRequest.Unmarshal(m, b)
-}
-func (m *UpdateBasicUserDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateBasicUserDataRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateBasicUserDataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateBasicUserDataRequest.Merge(m, src)
-}
-func (m *UpdateBasicUserDataRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateBasicUserDataRequest.Size(m)
-}
-func (m *UpdateBasicUserDataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateBasicUserDataRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateBasicUserDataRequest proto.InternalMessageInfo
-
-func (m *UpdateBasicUserDataRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *UpdateBasicUserDataRequest) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *UpdateBasicUserDataRequest) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *UpdateBasicUserDataRequest) GetPicUrl() string {
-	if m != nil {
-		return m.PicUrl
-	}
-	return ""
-}
-
-func (m *UpdateBasicUserDataRequest) GetAlias() string {
-	if m != nil {
-		return m.Alias
-	}
-	return ""
-}
-
-type UpdateBasicUserDataResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateBasicUserDataResponse) Reset()         { *m = UpdateBasicUserDataResponse{} }
-func (m *UpdateBasicUserDataResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateBasicUserDataResponse) ProtoMessage()    {}
-func (*UpdateBasicUserDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{23}
-}
-
-func (m *UpdateBasicUserDataResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateBasicUserDataResponse.Unmarshal(m, b)
-}
-func (m *UpdateBasicUserDataResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateBasicUserDataResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateBasicUserDataResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateBasicUserDataResponse.Merge(m, src)
-}
-func (m *UpdateBasicUserDataResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateBasicUserDataResponse.Size(m)
-}
-func (m *UpdateBasicUserDataResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateBasicUserDataResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateBasicUserDataResponse proto.InternalMessageInfo
-
 // GetThreadRequest holds a single thread id and the section name it belongs to
 type GetThreadRequest struct {
 	Thread               *context.Thread `protobuf:"bytes,1,opt,name=thread,proto3" json:"thread,omitempty"`
@@ -1687,7 +1468,7 @@ func (m *GetThreadRequest) Reset()         { *m = GetThreadRequest{} }
 func (m *GetThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*GetThreadRequest) ProtoMessage()    {}
 func (*GetThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{24}
+	return fileDescriptor_b3591c2d7d53bb31, []int{20}
 }
 
 func (m *GetThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1731,7 +1512,7 @@ func (m *GetSubcommentsRequest) Reset()         { *m = GetSubcommentsRequest{} }
 func (m *GetSubcommentsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetSubcommentsRequest) ProtoMessage()    {}
 func (*GetSubcommentsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{25}
+	return fileDescriptor_b3591c2d7d53bb31, []int{21}
 }
 
 func (m *GetSubcommentsRequest) XXX_Unmarshal(b []byte) error {
@@ -1766,311 +1547,6 @@ func (m *GetSubcommentsRequest) GetOffset() uint32 {
 	return 0
 }
 
-// ReadNotifsRequest holds the id of the user whose unread notifications will be
-// marked as read
-type ReadNotifsRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ReadNotifsRequest) Reset()         { *m = ReadNotifsRequest{} }
-func (m *ReadNotifsRequest) String() string { return proto.CompactTextString(m) }
-func (*ReadNotifsRequest) ProtoMessage()    {}
-func (*ReadNotifsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{26}
-}
-
-func (m *ReadNotifsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadNotifsRequest.Unmarshal(m, b)
-}
-func (m *ReadNotifsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadNotifsRequest.Marshal(b, m, deterministic)
-}
-func (m *ReadNotifsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadNotifsRequest.Merge(m, src)
-}
-func (m *ReadNotifsRequest) XXX_Size() int {
-	return xxx_messageInfo_ReadNotifsRequest.Size(m)
-}
-func (m *ReadNotifsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadNotifsRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadNotifsRequest proto.InternalMessageInfo
-
-func (m *ReadNotifsRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type ReadNotifsResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ReadNotifsResponse) Reset()         { *m = ReadNotifsResponse{} }
-func (m *ReadNotifsResponse) String() string { return proto.CompactTextString(m) }
-func (*ReadNotifsResponse) ProtoMessage()    {}
-func (*ReadNotifsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{27}
-}
-
-func (m *ReadNotifsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReadNotifsResponse.Unmarshal(m, b)
-}
-func (m *ReadNotifsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReadNotifsResponse.Marshal(b, m, deterministic)
-}
-func (m *ReadNotifsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReadNotifsResponse.Merge(m, src)
-}
-func (m *ReadNotifsResponse) XXX_Size() int {
-	return xxx_messageInfo_ReadNotifsResponse.Size(m)
-}
-func (m *ReadNotifsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReadNotifsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReadNotifsResponse proto.InternalMessageInfo
-
-// ClearNotifsRequest holds the id of the user whose both unread and read
-// notifications will be deleted
-type ClearNotifsRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ClearNotifsRequest) Reset()         { *m = ClearNotifsRequest{} }
-func (m *ClearNotifsRequest) String() string { return proto.CompactTextString(m) }
-func (*ClearNotifsRequest) ProtoMessage()    {}
-func (*ClearNotifsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{28}
-}
-
-func (m *ClearNotifsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClearNotifsRequest.Unmarshal(m, b)
-}
-func (m *ClearNotifsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClearNotifsRequest.Marshal(b, m, deterministic)
-}
-func (m *ClearNotifsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClearNotifsRequest.Merge(m, src)
-}
-func (m *ClearNotifsRequest) XXX_Size() int {
-	return xxx_messageInfo_ClearNotifsRequest.Size(m)
-}
-func (m *ClearNotifsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClearNotifsRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClearNotifsRequest proto.InternalMessageInfo
-
-func (m *ClearNotifsRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type ClearNotifsResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ClearNotifsResponse) Reset()         { *m = ClearNotifsResponse{} }
-func (m *ClearNotifsResponse) String() string { return proto.CompactTextString(m) }
-func (*ClearNotifsResponse) ProtoMessage()    {}
-func (*ClearNotifsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{29}
-}
-
-func (m *ClearNotifsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClearNotifsResponse.Unmarshal(m, b)
-}
-func (m *ClearNotifsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClearNotifsResponse.Marshal(b, m, deterministic)
-}
-func (m *ClearNotifsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClearNotifsResponse.Merge(m, src)
-}
-func (m *ClearNotifsResponse) XXX_Size() int {
-	return xxx_messageInfo_ClearNotifsResponse.Size(m)
-}
-func (m *ClearNotifsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClearNotifsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClearNotifsResponse proto.InternalMessageInfo
-
-// FollowUserRequest holds the id of the user which is following and the username
-// of the user being followed
-type FollowUserRequest struct {
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// user_to_follow indicates the username
-	UserToFollow         string   `protobuf:"bytes,2,opt,name=user_to_follow,json=userToFollow,proto3" json:"user_to_follow,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *FollowUserRequest) Reset()         { *m = FollowUserRequest{} }
-func (m *FollowUserRequest) String() string { return proto.CompactTextString(m) }
-func (*FollowUserRequest) ProtoMessage()    {}
-func (*FollowUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{30}
-}
-
-func (m *FollowUserRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FollowUserRequest.Unmarshal(m, b)
-}
-func (m *FollowUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FollowUserRequest.Marshal(b, m, deterministic)
-}
-func (m *FollowUserRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FollowUserRequest.Merge(m, src)
-}
-func (m *FollowUserRequest) XXX_Size() int {
-	return xxx_messageInfo_FollowUserRequest.Size(m)
-}
-func (m *FollowUserRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_FollowUserRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FollowUserRequest proto.InternalMessageInfo
-
-func (m *FollowUserRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *FollowUserRequest) GetUserToFollow() string {
-	if m != nil {
-		return m.UserToFollow
-	}
-	return ""
-}
-
-type FollowUserResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *FollowUserResponse) Reset()         { *m = FollowUserResponse{} }
-func (m *FollowUserResponse) String() string { return proto.CompactTextString(m) }
-func (*FollowUserResponse) ProtoMessage()    {}
-func (*FollowUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{31}
-}
-
-func (m *FollowUserResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FollowUserResponse.Unmarshal(m, b)
-}
-func (m *FollowUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FollowUserResponse.Marshal(b, m, deterministic)
-}
-func (m *FollowUserResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FollowUserResponse.Merge(m, src)
-}
-func (m *FollowUserResponse) XXX_Size() int {
-	return xxx_messageInfo_FollowUserResponse.Size(m)
-}
-func (m *FollowUserResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_FollowUserResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FollowUserResponse proto.InternalMessageInfo
-
-// UnfollowUserRequest holds the id of the user which is unfollowing and the username
-// of the user losing a follower
-type UnfollowUserRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	UserToUnfollow       string   `protobuf:"bytes,2,opt,name=user_to_unfollow,json=userToUnfollow,proto3" json:"user_to_unfollow,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UnfollowUserRequest) Reset()         { *m = UnfollowUserRequest{} }
-func (m *UnfollowUserRequest) String() string { return proto.CompactTextString(m) }
-func (*UnfollowUserRequest) ProtoMessage()    {}
-func (*UnfollowUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{32}
-}
-
-func (m *UnfollowUserRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UnfollowUserRequest.Unmarshal(m, b)
-}
-func (m *UnfollowUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UnfollowUserRequest.Marshal(b, m, deterministic)
-}
-func (m *UnfollowUserRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnfollowUserRequest.Merge(m, src)
-}
-func (m *UnfollowUserRequest) XXX_Size() int {
-	return xxx_messageInfo_UnfollowUserRequest.Size(m)
-}
-func (m *UnfollowUserRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnfollowUserRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UnfollowUserRequest proto.InternalMessageInfo
-
-func (m *UnfollowUserRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *UnfollowUserRequest) GetUserToUnfollow() string {
-	if m != nil {
-		return m.UserToUnfollow
-	}
-	return ""
-}
-
-type UnfollowUserResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UnfollowUserResponse) Reset()         { *m = UnfollowUserResponse{} }
-func (m *UnfollowUserResponse) String() string { return proto.CompactTextString(m) }
-func (*UnfollowUserResponse) ProtoMessage()    {}
-func (*UnfollowUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{33}
-}
-
-func (m *UnfollowUserResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UnfollowUserResponse.Unmarshal(m, b)
-}
-func (m *UnfollowUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UnfollowUserResponse.Marshal(b, m, deterministic)
-}
-func (m *UnfollowUserResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UnfollowUserResponse.Merge(m, src)
-}
-func (m *UnfollowUserResponse) XXX_Size() int {
-	return xxx_messageInfo_UnfollowUserResponse.Size(m)
-}
-func (m *UnfollowUserResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UnfollowUserResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UnfollowUserResponse proto.InternalMessageInfo
-
 // SaveThreadRequest holds the id of the user which is saving the thread and the
 // information about the thread to be saved.
 type SaveThreadRequest struct {
@@ -2085,7 +1561,7 @@ func (m *SaveThreadRequest) Reset()         { *m = SaveThreadRequest{} }
 func (m *SaveThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*SaveThreadRequest) ProtoMessage()    {}
 func (*SaveThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{34}
+	return fileDescriptor_b3591c2d7d53bb31, []int{22}
 }
 
 func (m *SaveThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -2130,7 +1606,7 @@ func (m *SaveThreadResponse) Reset()         { *m = SaveThreadResponse{} }
 func (m *SaveThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*SaveThreadResponse) ProtoMessage()    {}
 func (*SaveThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{35}
+	return fileDescriptor_b3591c2d7d53bb31, []int{23}
 }
 
 func (m *SaveThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -2165,7 +1641,7 @@ func (m *UndoSaveThreadRequest) Reset()         { *m = UndoSaveThreadRequest{} }
 func (m *UndoSaveThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*UndoSaveThreadRequest) ProtoMessage()    {}
 func (*UndoSaveThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{36}
+	return fileDescriptor_b3591c2d7d53bb31, []int{24}
 }
 
 func (m *UndoSaveThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -2210,7 +1686,7 @@ func (m *UndoSaveThreadResponse) Reset()         { *m = UndoSaveThreadResponse{}
 func (m *UndoSaveThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*UndoSaveThreadResponse) ProtoMessage()    {}
 func (*UndoSaveThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{37}
+	return fileDescriptor_b3591c2d7d53bb31, []int{25}
 }
 
 func (m *UndoSaveThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -2231,580 +1707,11 @@ func (m *UndoSaveThreadResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UndoSaveThreadResponse proto.InternalMessageInfo
 
-// ViewUsersRequest is a message for requesting either following or followers users
-// data of a given user
-type ViewUsersRequest struct {
-	UserId string `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// context is either following or followers
-	Context string `protobuf:"bytes,2,opt,name=context,proto3" json:"context,omitempty"`
-	// offset indicates how many users to ignore for pagination
-	Offset               uint32   `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ViewUsersRequest) Reset()         { *m = ViewUsersRequest{} }
-func (m *ViewUsersRequest) String() string { return proto.CompactTextString(m) }
-func (*ViewUsersRequest) ProtoMessage()    {}
-func (*ViewUsersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{38}
-}
-
-func (m *ViewUsersRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewUsersRequest.Unmarshal(m, b)
-}
-func (m *ViewUsersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewUsersRequest.Marshal(b, m, deterministic)
-}
-func (m *ViewUsersRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewUsersRequest.Merge(m, src)
-}
-func (m *ViewUsersRequest) XXX_Size() int {
-	return xxx_messageInfo_ViewUsersRequest.Size(m)
-}
-func (m *ViewUsersRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewUsersRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ViewUsersRequest proto.InternalMessageInfo
-
-func (m *ViewUsersRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *ViewUsersRequest) GetContext() string {
-	if m != nil {
-		return m.Context
-	}
-	return ""
-}
-
-func (m *ViewUsersRequest) GetOffset() uint32 {
-	if m != nil {
-		return m.Offset
-	}
-	return 0
-}
-
-// ViewUsersResponse holds a list of basic user data of requested users following
-// or followers of a user
-type ViewUsersResponse struct {
-	BasicUserData        []*dataformat.BasicUserData `protobuf:"bytes,1,rep,name=basic_user_data,json=basicUserData,proto3" json:"basic_user_data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
-	XXX_unrecognized     []byte                      `json:"-"`
-	XXX_sizecache        int32                       `json:"-"`
-}
-
-func (m *ViewUsersResponse) Reset()         { *m = ViewUsersResponse{} }
-func (m *ViewUsersResponse) String() string { return proto.CompactTextString(m) }
-func (*ViewUsersResponse) ProtoMessage()    {}
-func (*ViewUsersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{39}
-}
-
-func (m *ViewUsersResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewUsersResponse.Unmarshal(m, b)
-}
-func (m *ViewUsersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewUsersResponse.Marshal(b, m, deterministic)
-}
-func (m *ViewUsersResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewUsersResponse.Merge(m, src)
-}
-func (m *ViewUsersResponse) XXX_Size() int {
-	return xxx_messageInfo_ViewUsersResponse.Size(m)
-}
-func (m *ViewUsersResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewUsersResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ViewUsersResponse proto.InternalMessageInfo
-
-func (m *ViewUsersResponse) GetBasicUserData() []*dataformat.BasicUserData {
-	if m != nil {
-		return m.BasicUserData
-	}
-	return nil
-}
-
-// ViewUserByUsernameRequest is a message for requesting public data of a user
-type ViewUserByUsernameRequest struct {
-	Username             string   `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ViewUserByUsernameRequest) Reset()         { *m = ViewUserByUsernameRequest{} }
-func (m *ViewUserByUsernameRequest) String() string { return proto.CompactTextString(m) }
-func (*ViewUserByUsernameRequest) ProtoMessage()    {}
-func (*ViewUserByUsernameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{40}
-}
-
-func (m *ViewUserByUsernameRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewUserByUsernameRequest.Unmarshal(m, b)
-}
-func (m *ViewUserByUsernameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewUserByUsernameRequest.Marshal(b, m, deterministic)
-}
-func (m *ViewUserByUsernameRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewUserByUsernameRequest.Merge(m, src)
-}
-func (m *ViewUserByUsernameRequest) XXX_Size() int {
-	return xxx_messageInfo_ViewUserByUsernameRequest.Size(m)
-}
-func (m *ViewUserByUsernameRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewUserByUsernameRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ViewUserByUsernameRequest proto.InternalMessageInfo
-
-func (m *ViewUserByUsernameRequest) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-// ViewUserResponse holds some basic data of a requested user
-type ViewUserResponse struct {
-	Alias                string               `protobuf:"bytes,1,opt,name=alias,proto3" json:"alias,omitempty"`
-	Username             string               `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
-	PicUrl               string               `protobuf:"bytes,3,opt,name=pic_url,json=picUrl,proto3" json:"pic_url,omitempty"`
-	About                string               `protobuf:"bytes,4,opt,name=about,proto3" json:"about,omitempty"`
-	UserId               string               `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	LastTimeCreated      *timestamp.Timestamp `protobuf:"bytes,6,opt,name=last_time_created,json=lastTimeCreated,proto3" json:"last_time_created,omitempty"`
-	FollowersIds         []string             `protobuf:"bytes,7,rep,name=followers_ids,json=followersIds,proto3" json:"followers_ids,omitempty"`
-	FollowingIds         []string             `protobuf:"bytes,8,rep,name=following_ids,json=followingIds,proto3" json:"following_ids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ViewUserResponse) Reset()         { *m = ViewUserResponse{} }
-func (m *ViewUserResponse) String() string { return proto.CompactTextString(m) }
-func (*ViewUserResponse) ProtoMessage()    {}
-func (*ViewUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{41}
-}
-
-func (m *ViewUserResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ViewUserResponse.Unmarshal(m, b)
-}
-func (m *ViewUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ViewUserResponse.Marshal(b, m, deterministic)
-}
-func (m *ViewUserResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ViewUserResponse.Merge(m, src)
-}
-func (m *ViewUserResponse) XXX_Size() int {
-	return xxx_messageInfo_ViewUserResponse.Size(m)
-}
-func (m *ViewUserResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ViewUserResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ViewUserResponse proto.InternalMessageInfo
-
-func (m *ViewUserResponse) GetAlias() string {
-	if m != nil {
-		return m.Alias
-	}
-	return ""
-}
-
-func (m *ViewUserResponse) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *ViewUserResponse) GetPicUrl() string {
-	if m != nil {
-		return m.PicUrl
-	}
-	return ""
-}
-
-func (m *ViewUserResponse) GetAbout() string {
-	if m != nil {
-		return m.About
-	}
-	return ""
-}
-
-func (m *ViewUserResponse) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *ViewUserResponse) GetLastTimeCreated() *timestamp.Timestamp {
-	if m != nil {
-		return m.LastTimeCreated
-	}
-	return nil
-}
-
-func (m *ViewUserResponse) GetFollowersIds() []string {
-	if m != nil {
-		return m.FollowersIds
-	}
-	return nil
-}
-
-func (m *ViewUserResponse) GetFollowingIds() []string {
-	if m != nil {
-		return m.FollowingIds
-	}
-	return nil
-}
-
-// GetDashboardDataRequest holds the user id of the user to request the data for its
-// dashboard.
-type GetDashboardDataRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetDashboardDataRequest) Reset()         { *m = GetDashboardDataRequest{} }
-func (m *GetDashboardDataRequest) String() string { return proto.CompactTextString(m) }
-func (*GetDashboardDataRequest) ProtoMessage()    {}
-func (*GetDashboardDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{42}
-}
-
-func (m *GetDashboardDataRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetDashboardDataRequest.Unmarshal(m, b)
-}
-func (m *GetDashboardDataRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetDashboardDataRequest.Marshal(b, m, deterministic)
-}
-func (m *GetDashboardDataRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetDashboardDataRequest.Merge(m, src)
-}
-func (m *GetDashboardDataRequest) XXX_Size() int {
-	return xxx_messageInfo_GetDashboardDataRequest.Size(m)
-}
-func (m *GetDashboardDataRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetDashboardDataRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetDashboardDataRequest proto.InternalMessageInfo
-
-func (m *GetDashboardDataRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-// DashboardData holds the header data, the list of users this user is following,
-// the list of users that are following this user. the num of threads saved by
-// the user and the user id.
-type DashboardData struct {
-	UserHeaderData *UserHeaderData `protobuf:"bytes,1,opt,name=user_header_data,json=userHeaderData,proto3" json:"user_header_data,omitempty"`
-	// ids of users that are following this user.
-	FollowersIds []string `protobuf:"bytes,2,rep,name=followers_ids,json=followersIds,proto3" json:"followers_ids,omitempty"`
-	// ids of users that this user is following.
-	FollowingIds         []string `protobuf:"bytes,3,rep,name=following_ids,json=followingIds,proto3" json:"following_ids,omitempty"`
-	SavedThreads         uint32   `protobuf:"varint,4,opt,name=saved_threads,json=savedThreads,proto3" json:"saved_threads,omitempty"`
-	UserId               string   `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DashboardData) Reset()         { *m = DashboardData{} }
-func (m *DashboardData) String() string { return proto.CompactTextString(m) }
-func (*DashboardData) ProtoMessage()    {}
-func (*DashboardData) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{43}
-}
-
-func (m *DashboardData) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DashboardData.Unmarshal(m, b)
-}
-func (m *DashboardData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DashboardData.Marshal(b, m, deterministic)
-}
-func (m *DashboardData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DashboardData.Merge(m, src)
-}
-func (m *DashboardData) XXX_Size() int {
-	return xxx_messageInfo_DashboardData.Size(m)
-}
-func (m *DashboardData) XXX_DiscardUnknown() {
-	xxx_messageInfo_DashboardData.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DashboardData proto.InternalMessageInfo
-
-func (m *DashboardData) GetUserHeaderData() *UserHeaderData {
-	if m != nil {
-		return m.UserHeaderData
-	}
-	return nil
-}
-
-func (m *DashboardData) GetFollowersIds() []string {
-	if m != nil {
-		return m.FollowersIds
-	}
-	return nil
-}
-
-func (m *DashboardData) GetFollowingIds() []string {
-	if m != nil {
-		return m.FollowingIds
-	}
-	return nil
-}
-
-func (m *DashboardData) GetSavedThreads() uint32 {
-	if m != nil {
-		return m.SavedThreads
-	}
-	return 0
-}
-
-func (m *DashboardData) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-// LoginRequest is a message for requesting the validation of a user's credentials
-type LoginRequest struct {
-	Username             string   `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
-	Password             string   `protobuf:"bytes,150,opt,name=password,proto3" json:"password,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *LoginRequest) Reset()         { *m = LoginRequest{} }
-func (m *LoginRequest) String() string { return proto.CompactTextString(m) }
-func (*LoginRequest) ProtoMessage()    {}
-func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{44}
-}
-
-func (m *LoginRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LoginRequest.Unmarshal(m, b)
-}
-func (m *LoginRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LoginRequest.Marshal(b, m, deterministic)
-}
-func (m *LoginRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LoginRequest.Merge(m, src)
-}
-func (m *LoginRequest) XXX_Size() int {
-	return xxx_messageInfo_LoginRequest.Size(m)
-}
-func (m *LoginRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_LoginRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_LoginRequest proto.InternalMessageInfo
-
-func (m *LoginRequest) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *LoginRequest) GetPassword() string {
-	if m != nil {
-		return m.Password
-	}
-	return ""
-}
-
-// LoginResponse holds the id of the user that just logged in
-type LoginResponse struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *LoginResponse) Reset()         { *m = LoginResponse{} }
-func (m *LoginResponse) String() string { return proto.CompactTextString(m) }
-func (*LoginResponse) ProtoMessage()    {}
-func (*LoginResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{45}
-}
-
-func (m *LoginResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_LoginResponse.Unmarshal(m, b)
-}
-func (m *LoginResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_LoginResponse.Marshal(b, m, deterministic)
-}
-func (m *LoginResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LoginResponse.Merge(m, src)
-}
-func (m *LoginResponse) XXX_Size() int {
-	return xxx_messageInfo_LoginResponse.Size(m)
-}
-func (m *LoginResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_LoginResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_LoginResponse proto.InternalMessageInfo
-
-func (m *LoginResponse) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type RegisterUserRequest struct {
-	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	PicUrl               string   `protobuf:"bytes,3,opt,name=pic_url,json=picUrl,proto3" json:"pic_url,omitempty"`
-	Username             string   `protobuf:"bytes,4,opt,name=username,proto3" json:"username,omitempty"`
-	Alias                string   `protobuf:"bytes,5,opt,name=alias,proto3" json:"alias,omitempty"`
-	About                string   `protobuf:"bytes,6,opt,name=about,proto3" json:"about,omitempty"`
-	Password             string   `protobuf:"bytes,150,opt,name=password,proto3" json:"password,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RegisterUserRequest) Reset()         { *m = RegisterUserRequest{} }
-func (m *RegisterUserRequest) String() string { return proto.CompactTextString(m) }
-func (*RegisterUserRequest) ProtoMessage()    {}
-func (*RegisterUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{46}
-}
-
-func (m *RegisterUserRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RegisterUserRequest.Unmarshal(m, b)
-}
-func (m *RegisterUserRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RegisterUserRequest.Marshal(b, m, deterministic)
-}
-func (m *RegisterUserRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RegisterUserRequest.Merge(m, src)
-}
-func (m *RegisterUserRequest) XXX_Size() int {
-	return xxx_messageInfo_RegisterUserRequest.Size(m)
-}
-func (m *RegisterUserRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RegisterUserRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RegisterUserRequest proto.InternalMessageInfo
-
-func (m *RegisterUserRequest) GetEmail() string {
-	if m != nil {
-		return m.Email
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetPicUrl() string {
-	if m != nil {
-		return m.PicUrl
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetUsername() string {
-	if m != nil {
-		return m.Username
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetAlias() string {
-	if m != nil {
-		return m.Alias
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetAbout() string {
-	if m != nil {
-		return m.About
-	}
-	return ""
-}
-
-func (m *RegisterUserRequest) GetPassword() string {
-	if m != nil {
-		return m.Password
-	}
-	return ""
-}
-
-// RegisterUserResponse holds the id of the user that just signed in
-type RegisterUserResponse struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *RegisterUserResponse) Reset()         { *m = RegisterUserResponse{} }
-func (m *RegisterUserResponse) String() string { return proto.CompactTextString(m) }
-func (*RegisterUserResponse) ProtoMessage()    {}
-func (*RegisterUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{47}
-}
-
-func (m *RegisterUserResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_RegisterUserResponse.Unmarshal(m, b)
-}
-func (m *RegisterUserResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_RegisterUserResponse.Marshal(b, m, deterministic)
-}
-func (m *RegisterUserResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RegisterUserResponse.Merge(m, src)
-}
-func (m *RegisterUserResponse) XXX_Size() int {
-	return xxx_messageInfo_RegisterUserResponse.Size(m)
-}
-func (m *RegisterUserResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RegisterUserResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RegisterUserResponse proto.InternalMessageInfo
-
-func (m *RegisterUserResponse) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
 func init() {
 	proto.RegisterType((*Content)(nil), "cheropatillapb.Content")
 	proto.RegisterType((*ContentAuthor)(nil), "cheropatillapb.ContentAuthor")
 	proto.RegisterType((*ContentMetadata)(nil), "cheropatillapb.ContentMetadata")
 	proto.RegisterType((*ContentData)(nil), "cheropatillapb.ContentData")
-	proto.RegisterType((*UserHeaderData)(nil), "cheropatillapb.UserHeaderData")
 	proto.RegisterType((*NotifyUser)(nil), "cheropatillapb.NotifyUser")
 	proto.RegisterType((*ContentPattern)(nil), "cheropatillapb.ContentPattern")
 	proto.RegisterType((*GeneralPattern)(nil), "cheropatillapb.GeneralPattern")
@@ -2824,33 +1731,12 @@ func init() {
 	proto.RegisterType((*DeleteContentResponse)(nil), "cheropatillapb.DeleteContentResponse")
 	proto.RegisterType((*CreateThreadRequest)(nil), "cheropatillapb.CreateThreadRequest")
 	proto.RegisterType((*CreateThreadResponse)(nil), "cheropatillapb.CreateThreadResponse")
-	proto.RegisterType((*GetBasicUserDataRequest)(nil), "cheropatillapb.GetBasicUserDataRequest")
-	proto.RegisterType((*UpdateBasicUserDataRequest)(nil), "cheropatillapb.UpdateBasicUserDataRequest")
-	proto.RegisterType((*UpdateBasicUserDataResponse)(nil), "cheropatillapb.UpdateBasicUserDataResponse")
 	proto.RegisterType((*GetThreadRequest)(nil), "cheropatillapb.GetThreadRequest")
 	proto.RegisterType((*GetSubcommentsRequest)(nil), "cheropatillapb.GetSubcommentsRequest")
-	proto.RegisterType((*ReadNotifsRequest)(nil), "cheropatillapb.ReadNotifsRequest")
-	proto.RegisterType((*ReadNotifsResponse)(nil), "cheropatillapb.ReadNotifsResponse")
-	proto.RegisterType((*ClearNotifsRequest)(nil), "cheropatillapb.ClearNotifsRequest")
-	proto.RegisterType((*ClearNotifsResponse)(nil), "cheropatillapb.ClearNotifsResponse")
-	proto.RegisterType((*FollowUserRequest)(nil), "cheropatillapb.FollowUserRequest")
-	proto.RegisterType((*FollowUserResponse)(nil), "cheropatillapb.FollowUserResponse")
-	proto.RegisterType((*UnfollowUserRequest)(nil), "cheropatillapb.UnfollowUserRequest")
-	proto.RegisterType((*UnfollowUserResponse)(nil), "cheropatillapb.UnfollowUserResponse")
 	proto.RegisterType((*SaveThreadRequest)(nil), "cheropatillapb.SaveThreadRequest")
 	proto.RegisterType((*SaveThreadResponse)(nil), "cheropatillapb.SaveThreadResponse")
 	proto.RegisterType((*UndoSaveThreadRequest)(nil), "cheropatillapb.UndoSaveThreadRequest")
 	proto.RegisterType((*UndoSaveThreadResponse)(nil), "cheropatillapb.UndoSaveThreadResponse")
-	proto.RegisterType((*ViewUsersRequest)(nil), "cheropatillapb.ViewUsersRequest")
-	proto.RegisterType((*ViewUsersResponse)(nil), "cheropatillapb.ViewUsersResponse")
-	proto.RegisterType((*ViewUserByUsernameRequest)(nil), "cheropatillapb.ViewUserByUsernameRequest")
-	proto.RegisterType((*ViewUserResponse)(nil), "cheropatillapb.ViewUserResponse")
-	proto.RegisterType((*GetDashboardDataRequest)(nil), "cheropatillapb.GetDashboardDataRequest")
-	proto.RegisterType((*DashboardData)(nil), "cheropatillapb.DashboardData")
-	proto.RegisterType((*LoginRequest)(nil), "cheropatillapb.LoginRequest")
-	proto.RegisterType((*LoginResponse)(nil), "cheropatillapb.LoginResponse")
-	proto.RegisterType((*RegisterUserRequest)(nil), "cheropatillapb.RegisterUserRequest")
-	proto.RegisterType((*RegisterUserResponse)(nil), "cheropatillapb.RegisterUserResponse")
 }
 
 func init() {
@@ -2858,142 +1744,94 @@ func init() {
 }
 
 var fileDescriptor_b3591c2d7d53bb31 = []byte{
-	// 2148 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x5a, 0xcd, 0x93, 0x1b, 0x47,
-	0x15, 0xd7, 0x68, 0x77, 0xb5, 0xbb, 0x4f, 0x5f, 0xab, 0x5e, 0x79, 0x57, 0x1e, 0x3b, 0xf1, 0x66,
-	0xec, 0x24, 0x8b, 0x71, 0xb4, 0xb6, 0x42, 0x80, 0x22, 0x70, 0xd8, 0x0f, 0xf6, 0xa3, 0xca, 0x86,
-	0x64, 0xd6, 0x0a, 0x26, 0x84, 0xa8, 0x46, 0x33, 0x2d, 0x69, 0xca, 0x23, 0x8d, 0x98, 0xe9, 0x59,
-	0xef, 0xde, 0xf8, 0x0b, 0xa8, 0x82, 0x02, 0x8e, 0x1c, 0xf8, 0x1b, 0xb8, 0x72, 0xe2, 0xff, 0xa0,
-	0xa0, 0x8a, 0x2a, 0x0e, 0x1c, 0xa9, 0xe2, 0x4c, 0xf5, 0xc7, 0x8c, 0x7a, 0xbe, 0x24, 0xb9, 0x5c,
-	0x39, 0x24, 0x37, 0x75, 0xf7, 0xeb, 0xd7, 0xef, 0xbd, 0xfe, 0xbd, 0x37, 0xbf, 0xd7, 0x25, 0xa8,
-	0x99, 0x23, 0xec, 0xb9, 0xc6, 0xd4, 0x6e, 0x4f, 0x3d, 0x97, 0xb8, 0x88, 0x8f, 0xa7, 0x06, 0xb1,
-	0x1d, 0xc7, 0x98, 0xf6, 0xd5, 0x7b, 0x43, 0xd7, 0x1d, 0x3a, 0xf8, 0x80, 0xad, 0xf6, 0x83, 0xc1,
-	0x01, 0xb1, 0xc7, 0xd8, 0x27, 0xc6, 0x78, 0xca, 0x37, 0xa8, 0x0d, 0xcb, 0x20, 0x46, 0x6f, 0xe0,
-	0x7a, 0x63, 0x83, 0x88, 0xa9, 0xaa, 0xe9, 0x4e, 0x08, 0xbe, 0x0e, 0x87, 0xb5, 0x31, 0x26, 0x06,
-	0x95, 0xe2, 0x63, 0xed, 0xb7, 0x0a, 0xac, 0x1f, 0x53, 0x89, 0x09, 0x41, 0x4d, 0x58, 0x23, 0x36,
-	0x71, 0x70, 0x4b, 0xd9, 0x53, 0xf6, 0x37, 0x75, 0x3e, 0x40, 0x2d, 0x58, 0x37, 0xb9, 0x40, 0xab,
-	0xc8, 0xe6, 0xc3, 0x21, 0xda, 0x85, 0xf5, 0x01, 0xe9, 0x0d, 0x6c, 0x07, 0xb7, 0x56, 0xd8, 0x4a,
-	0x69, 0x40, 0x4e, 0x6d, 0x07, 0xa3, 0x1f, 0x41, 0x65, 0x1a, 0xf4, 0x1d, 0xdb, 0x1f, 0xf5, 0x2c,
-	0x83, 0xe0, 0xd6, 0xea, 0x9e, 0xb2, 0x5f, 0xee, 0xa8, 0x6d, 0x6e, 0x7e, 0x3b, 0x34, 0xbf, 0xfd,
-	0x3c, 0x34, 0x5f, 0x2f, 0x0b, 0xf9, 0x13, 0x83, 0x60, 0xed, 0x53, 0xa8, 0x0a, 0x93, 0x0e, 0x03,
-	0x32, 0x72, 0x3d, 0x54, 0x83, 0xa2, 0x6d, 0x09, 0xab, 0x8a, 0xb6, 0x85, 0x54, 0xd8, 0x08, 0x7c,
-	0xec, 0x4d, 0x8c, 0x31, 0x16, 0x36, 0x45, 0x63, 0xea, 0x84, 0xe1, 0xd8, 0x86, 0x2f, 0x4c, 0xe2,
-	0x03, 0xed, 0xbf, 0x0a, 0xd4, 0x85, 0xce, 0x67, 0x22, 0x00, 0x29, 0xad, 0x2d, 0x58, 0xf7, 0xb1,
-	0x49, 0x6c, 0x77, 0x12, 0x3a, 0x2a, 0x86, 0xe8, 0x2e, 0x6c, 0x4e, 0xb1, 0x37, 0x36, 0x1c, 0x7b,
-	0xf2, 0x52, 0xe8, 0x9d, 0x4d, 0xd0, 0x7d, 0xc1, 0xf4, 0xca, 0x25, 0xd8, 0x67, 0x8e, 0x56, 0xf5,
-	0x70, 0x48, 0x57, 0x3c, 0x3c, 0x75, 0x6c, 0xec, 0xb7, 0xd6, 0xf8, 0x8a, 0x18, 0xa2, 0x3b, 0xb0,
-	0x49, 0x45, 0xbc, 0x9e, 0x6d, 0xf9, 0xad, 0xd2, 0xde, 0x0a, 0x75, 0x81, 0x4d, 0x5c, 0x58, 0x3e,
-	0xba, 0x07, 0x65, 0x2e, 0xc7, 0x97, 0xd7, 0xd9, 0x32, 0x88, 0x29, 0x2a, 0xf0, 0x1e, 0xd4, 0xa9,
-	0xbf, 0x7e, 0xef, 0xd5, 0xc8, 0xed, 0xf9, 0xc6, 0x15, 0xb6, 0x5a, 0x1b, 0x4c, 0xa8, 0xca, 0xa6,
-	0x7f, 0x36, 0x72, 0x2f, 0xe9, 0xa4, 0xf6, 0x17, 0x05, 0xca, 0xc2, 0xeb, 0x13, 0xea, 0xf1, 0x47,
-	0x50, 0x32, 0x58, 0x44, 0x99, 0xd7, 0xe5, 0xce, 0x5b, 0xed, 0x38, 0xc0, 0xda, 0xb1, 0xb0, 0xeb,
-	0x42, 0x18, 0x3d, 0x89, 0x23, 0xa0, 0xdc, 0xd9, 0xcd, 0xd9, 0x37, 0x83, 0xc6, 0xc7, 0xb0, 0x11,
-	0x02, 0x8d, 0x05, 0xac, 0xdc, 0xb9, 0x97, 0xb3, 0x27, 0xbc, 0x0e, 0x3d, 0xda, 0xa0, 0xfd, 0x4f,
-	0x81, 0x5a, 0xd7, 0xc7, 0xde, 0x39, 0x36, 0x2c, 0xec, 0x31, 0xcb, 0xa3, 0x5b, 0x55, 0xa4, 0x5b,
-	0x9d, 0x8b, 0x83, 0xef, 0x42, 0x35, 0x98, 0x78, 0xd8, 0xb0, 0x7a, 0x13, 0x97, 0xd8, 0x03, 0x8a,
-	0x87, 0x95, 0xfd, 0x72, 0xa7, 0xd1, 0xa6, 0x47, 0x88, 0x0c, 0xf9, 0x09, 0x5d, 0xd1, 0x2b, 0x5c,
-	0x8e, 0x0d, 0x7c, 0xd4, 0xa1, 0xc1, 0x9f, 0xed, 0x5a, 0xcd, 0xdb, 0x05, 0xd2, 0x9e, 0x53, 0x68,
-	0x38, 0x86, 0x4f, 0x7a, 0x34, 0x1d, 0x7b, 0xa6, 0x87, 0x0d, 0x82, 0x2d, 0x76, 0xe3, 0xf3, 0x41,
-	0x5f, 0xa7, 0x9b, 0xe8, 0xf0, 0x98, 0x6f, 0xd1, 0xbe, 0x00, 0x60, 0x1a, 0x6f, 0xa8, 0xf7, 0x34,
-	0xbd, 0xa8, 0x37, 0xbd, 0x08, 0xa4, 0x25, 0x3a, 0xbc, 0xb0, 0xd0, 0x47, 0x50, 0x61, 0xd6, 0xd9,
-	0xa6, 0x11, 0xa1, 0x35, 0xdb, 0x33, 0x59, 0x4c, 0xfb, 0xbb, 0x02, 0x35, 0x11, 0xf4, 0x4f, 0x0c,
-	0x42, 0xb0, 0x37, 0xa1, 0x37, 0x3b, 0xe5, 0x3f, 0x5b, 0xca, 0xde, 0xca, 0x7e, 0xad, 0xb3, 0xdb,
-	0x8e, 0xea, 0x83, 0x10, 0xbd, 0x24, 0x06, 0x09, 0x7c, 0x3d, 0x94, 0xa3, 0xe0, 0xb4, 0x6c, 0xdf,
-	0x34, 0x3c, 0x8b, 0x81, 0xb3, 0xc8, 0xc1, 0x29, 0xa6, 0x28, 0x38, 0x3f, 0x84, 0xb2, 0xc8, 0x9b,
-	0x9e, 0x49, 0xae, 0xc5, 0xed, 0x6f, 0xb5, 0xc3, 0x32, 0x74, 0xc9, 0xd7, 0xce, 0x0b, 0x3a, 0x08,
-	0xb1, 0x63, 0x72, 0x8d, 0x1e, 0x03, 0x90, 0x11, 0x8b, 0x3b, 0xdd, 0xc3, 0xeb, 0x45, 0x3d, 0xda,
-	0xf3, 0x9c, 0x2d, 0x9d, 0x17, 0xf4, 0x4d, 0x2e, 0x74, 0x4c, 0xae, 0x8f, 0x1a, 0x50, 0x17, 0x60,
-	0xeb, 0x09, 0x31, 0xed, 0x3f, 0x0a, 0xd4, 0xce, 0xf0, 0x04, 0x7b, 0x86, 0xf3, 0x06, 0x0e, 0xfe,
-	0x34, 0xed, 0x60, 0xb9, 0xd3, 0x4e, 0xa2, 0x37, 0x7e, 0x4e, 0xfb, 0x24, 0xf2, 0xff, 0xc7, 0x13,
-	0xe2, 0xdd, 0xc8, 0x01, 0x51, 0xbb, 0x50, 0x4f, 0x2c, 0xa3, 0x2d, 0x58, 0x79, 0x89, 0x6f, 0xc4,
-	0xb5, 0xd2, 0x9f, 0xe8, 0x11, 0xac, 0x5d, 0x19, 0x4e, 0x80, 0xc5, 0x65, 0xee, 0x24, 0xcf, 0xbb,
-	0xb0, 0x9e, 0xda, 0x3e, 0xd1, 0xb9, 0xd0, 0x0f, 0x8a, 0xdf, 0x57, 0xb4, 0x5f, 0x17, 0xa1, 0xc2,
-	0xd2, 0xfc, 0x0d, 0x7c, 0x7d, 0x96, 0xe5, 0xeb, 0xa3, 0xe4, 0xd9, 0xf2, 0x29, 0xf3, 0x3c, 0x95,
-	0x11, 0xbb, 0x22, 0x23, 0xf6, 0xab, 0x0a, 0x81, 0x0a, 0x25, 0x3e, 0x49, 0xb5, 0x51, 0x07, 0x14,
-	0x86, 0x46, 0xfa, 0x53, 0xfb, 0x5b, 0x11, 0xea, 0x87, 0x26, 0xb1, 0xaf, 0x6c, 0x72, 0xf3, 0x06,
-	0x11, 0xfa, 0x24, 0x2b, 0x42, 0x07, 0x49, 0xd3, 0x12, 0x07, 0xcd, 0x0d, 0xd2, 0x63, 0x58, 0x63,
-	0x55, 0x5a, 0x64, 0x46, 0x2b, 0xa9, 0x8b, 0xe6, 0x3e, 0xf5, 0xe9, 0xbc, 0xa0, 0x73, 0x41, 0x74,
-	0x7b, 0x16, 0x56, 0x9a, 0x19, 0x9b, 0xe7, 0x85, 0x28, 0xb0, 0x97, 0xcb, 0x04, 0xf6, 0x61, 0x3c,
-	0xb0, 0x4d, 0xb9, 0x50, 0x84, 0x96, 0x4b, 0x61, 0x3d, 0xda, 0x14, 0xf5, 0xfe, 0x9a, 0x68, 0x77,
-	0x61, 0x23, 0xb4, 0x27, 0x23, 0xc6, 0xbf, 0x29, 0x46, 0xdf, 0x17, 0x3d, 0x70, 0x30, 0x3a, 0x80,
-	0x55, 0x56, 0xf1, 0xf9, 0xd7, 0xe5, 0x4e, 0x4e, 0xc5, 0xa7, 0x05, 0x5d, 0x67, 0x82, 0x89, 0xb4,
-	0x2f, 0x2e, 0x4e, 0x7b, 0x5a, 0x5d, 0x4c, 0x77, 0x3c, 0x66, 0x69, 0x9f, 0x51, 0x5d, 0x8e, 0xf9,
-	0x1a, 0xad, 0x2e, 0x42, 0x8c, 0x6e, 0xfa, 0x21, 0xd4, 0xfc, 0xa0, 0x2f, 0xef, 0xe3, 0x15, 0x66,
-	0x7b, 0x56, 0x95, 0xa2, 0xe5, 0xf3, 0x82, 0x5e, 0x9d, 0x09, 0xd3, 0xdd, 0x3b, 0x50, 0xf2, 0x19,
-	0x2a, 0x58, 0x49, 0xdf, 0xd4, 0xc5, 0x28, 0xab, 0x02, 0xfd, 0x43, 0x81, 0x6a, 0x97, 0x7d, 0xfc,
-	0x75, 0xfc, 0xab, 0x00, 0xfb, 0x24, 0xbf, 0x88, 0x7f, 0x1d, 0x5c, 0xcf, 0x72, 0xf1, 0x5f, 0x0a,
-	0x34, 0xba, 0x13, 0xcb, 0xfd, 0x86, 0xbb, 0xd9, 0x04, 0x24, 0x7b, 0xe9, 0x4f, 0xdd, 0x89, 0x8f,
-	0xb5, 0x3f, 0x14, 0xe9, 0x27, 0x94, 0xed, 0x0b, 0x3d, 0x97, 0xe8, 0xb1, 0x92, 0x4b, 0x8f, 0x8b,
-	0x31, 0x7a, 0x9c, 0x57, 0x26, 0xdf, 0x90, 0x37, 0x27, 0x62, 0xbd, 0xf6, 0xfa, 0xb1, 0x2e, 0x2d,
-	0x13, 0xeb, 0xac, 0x68, 0xfd, 0x5b, 0x81, 0xe6, 0x09, 0x76, 0x30, 0xc1, 0x61, 0x39, 0xf8, 0xa6,
-	0xe2, 0x62, 0x17, 0x6e, 0x25, 0x1c, 0x15, 0xd0, 0xf8, 0xbd, 0x02, 0xdb, 0x9c, 0xc7, 0x71, 0xe3,
-	0xc3, 0x08, 0x3c, 0x89, 0xe3, 0x63, 0x19, 0xf2, 0xfc, 0x24, 0xce, 0xa0, 0x8a, 0xd9, 0x0c, 0x2a,
-	0xc6, 0x9f, 0xf2, 0x20, 0xa5, 0x7d, 0x07, 0x9a, 0x71, 0xab, 0xb8, 0xb9, 0xf1, 0x96, 0x46, 0x49,
-	0xb4, 0x34, 0x5a, 0x07, 0x76, 0xcf, 0x30, 0x39, 0x32, 0x7c, 0xdb, 0xa4, 0xe5, 0x9f, 0x55, 0xec,
-	0x05, 0x37, 0xaa, 0xfd, 0x59, 0x01, 0xb5, 0x3b, 0xa5, 0xb8, 0x7d, 0xad, 0x7d, 0x73, 0x49, 0xfc,
-	0x1e, 0x94, 0x2d, 0xec, 0x9b, 0x9e, 0x3d, 0x65, 0x44, 0x97, 0xbb, 0x26, 0x4f, 0x51, 0xb5, 0x53,
-	0xdb, 0xec, 0x05, 0x9e, 0xc3, 0xbf, 0x8d, 0x7a, 0x69, 0x6a, 0x9b, 0x5d, 0xcf, 0x99, 0x75, 0x0c,
-	0x6b, 0x72, 0x1f, 0xf8, 0x16, 0xdc, 0xc9, 0xb4, 0x51, 0x5c, 0xe2, 0xc7, 0xb0, 0x75, 0x86, 0x49,
-	0xfc, 0x02, 0xdf, 0x87, 0x12, 0x07, 0xa1, 0xb8, 0xbf, 0x24, 0x4a, 0x75, 0xb1, 0xac, 0xf5, 0xe1,
-	0xd6, 0x19, 0x26, 0x33, 0x3c, 0xf9, 0x33, 0x08, 0xc4, 0x90, 0xab, 0x64, 0x23, 0x37, 0x86, 0xdb,
-	0x1d, 0x28, 0xb9, 0x83, 0x81, 0x8f, 0x79, 0xc7, 0x55, 0xd5, 0xc5, 0x48, 0x7b, 0x04, 0x0d, 0x3d,
-	0xea, 0x3b, 0x16, 0x5e, 0x49, 0x13, 0x90, 0x2c, 0x2d, 0x9c, 0xfc, 0x00, 0xd0, 0xb1, 0x83, 0x0d,
-	0x6f, 0x49, 0x25, 0xb7, 0x60, 0x3b, 0x26, 0x2e, 0xb4, 0xe8, 0xd0, 0x38, 0x75, 0x1d, 0xc7, 0x7d,
-	0x45, 0x83, 0xb8, 0xf0, 0x92, 0x1f, 0x40, 0x8d, 0x2d, 0x10, 0xb7, 0x37, 0x60, 0xbb, 0xc4, 0x55,
-	0x57, 0xe8, 0xec, 0x73, 0x97, 0x6b, 0xa2, 0xf6, 0xca, 0x3a, 0xc5, 0x49, 0x2f, 0x60, 0xbb, 0x3b,
-	0x19, 0x2c, 0x7f, 0xd6, 0x3e, 0x6c, 0x85, 0x67, 0x05, 0x93, 0xd8, 0x69, 0x35, 0x7e, 0x5a, 0xa8,
-	0x4d, 0xdb, 0x81, 0x66, 0x5c, 0xb3, 0x38, 0xb1, 0x0b, 0x0d, 0xca, 0x79, 0xe3, 0x38, 0xc8, 0x3d,
-	0x6f, 0x06, 0x90, 0xe2, 0x7c, 0x80, 0x34, 0x01, 0xc9, 0x6a, 0xc5, 0x61, 0x3f, 0x87, 0x5b, 0xf4,
-	0x4b, 0xf3, 0x55, 0x1c, 0xd8, 0x82, 0x9d, 0xa4, 0x6a, 0x71, 0xe8, 0x2f, 0x61, 0xeb, 0x33, 0x1b,
-	0x33, 0xaf, 0x17, 0x22, 0x20, 0xfa, 0xc4, 0x5d, 0xc7, 0x5f, 0x80, 0xae, 0x89, 0x04, 0xd3, 0x95,
-	0x18, 0x4c, 0x3f, 0x83, 0x86, 0xa4, 0x5e, 0x94, 0x9c, 0x43, 0xa8, 0xf7, 0x69, 0xd6, 0xf5, 0xd8,
-	0x29, 0x82, 0x28, 0x52, 0x3a, 0x7d, 0x5b, 0x26, 0xa4, 0xf1, 0xc4, 0xac, 0xf6, 0xe5, 0xa1, 0xf6,
-	0x3d, 0xb8, 0x1d, 0xea, 0x3d, 0x62, 0x4d, 0x32, 0xad, 0x12, 0xa1, 0xfd, 0x72, 0x21, 0x51, 0xe2,
-	0x85, 0x44, 0xfb, 0x53, 0x71, 0xe6, 0x70, 0x64, 0xd0, 0xeb, 0x3f, 0x2a, 0x48, 0xd5, 0x66, 0x25,
-	0x55, 0x6d, 0xfa, 0x6e, 0x40, 0x44, 0x11, 0xe2, 0x03, 0x39, 0xa2, 0x6b, 0xb1, 0x88, 0x66, 0x3e,
-	0x18, 0x94, 0x5e, 0xfb, 0xc1, 0x00, 0xdd, 0x87, 0x2a, 0x87, 0x2f, 0xf6, 0x7c, 0xe9, 0xad, 0xa8,
-	0x12, 0x4d, 0xd2, 0x86, 0x23, 0x12, 0xb2, 0x27, 0x43, 0x26, 0xb4, 0x21, 0x0b, 0xd9, 0x93, 0xe1,
-	0x85, 0xe5, 0x8b, 0x8a, 0x7f, 0x62, 0xf8, 0xa3, 0xbe, 0x6b, 0x78, 0xd6, 0x52, 0x15, 0xff, 0x9f,
-	0x0a, 0x54, 0x63, 0x3b, 0xd0, 0xb9, 0x48, 0xbd, 0x11, 0x7b, 0xb9, 0xe9, 0x49, 0xcd, 0xc0, 0xdb,
-	0x59, 0x6d, 0xce, 0xec, 0x81, 0x87, 0xa7, 0xa6, 0xf4, 0xe0, 0x93, 0xf2, 0xac, 0xb8, 0x8c, 0x67,
-	0x2b, 0x69, 0xcf, 0xa8, 0x10, 0x7b, 0x22, 0xeb, 0xf1, 0xa4, 0x08, 0x1f, 0xe9, 0x2a, 0x6c, 0x92,
-	0xa7, 0x85, 0x9f, 0x7b, 0x53, 0xda, 0x19, 0x54, 0x9e, 0xba, 0x43, 0x7b, 0xb2, 0x04, 0xc8, 0xd0,
-	0x1d, 0xd8, 0x98, 0x1a, 0xbe, 0xff, 0xca, 0xf5, 0xac, 0xd6, 0x1f, 0xc5, 0x62, 0x38, 0xa1, 0xed,
-	0x43, 0x55, 0x28, 0x12, 0xe8, 0xcb, 0x0d, 0xeb, 0x5f, 0x15, 0xd8, 0xd6, 0xf1, 0xd0, 0xf6, 0x09,
-	0xf6, 0xe4, 0x82, 0xd7, 0x84, 0x35, 0x3c, 0x36, 0x6c, 0x27, 0x84, 0x2b, 0x1b, 0x20, 0x04, 0xab,
-	0x12, 0x54, 0x57, 0xe7, 0xc3, 0x54, 0xb6, 0x7e, 0x35, 0xef, 0xe1, 0x54, 0xfe, 0x60, 0xce, 0x80,
-	0x5d, 0x92, 0x81, 0x3d, 0xd7, 0xd3, 0x03, 0x68, 0xc6, 0xcd, 0x5f, 0xe0, 0x70, 0xe7, 0x77, 0x08,
-	0xb6, 0x8e, 0xbd, 0xc0, 0x3a, 0x96, 0x10, 0x82, 0x3e, 0x85, 0x9a, 0x8e, 0xcd, 0x1b, 0xd3, 0x09,
-	0x99, 0x16, 0x7a, 0x3b, 0x87, 0x38, 0x89, 0xa6, 0x5b, 0xcd, 0xeb, 0x37, 0x69, 0x6b, 0xaa, 0x15,
-	0x1e, 0x2b, 0x92, 0x4a, 0xf1, 0x7a, 0x93, 0x56, 0x19, 0x7f, 0xd6, 0x59, 0xac, 0xf2, 0x12, 0xea,
-	0x42, 0x65, 0xd8, 0x48, 0xa3, 0x7b, 0x0b, 0x1e, 0x07, 0x16, 0x2b, 0x7d, 0x06, 0x15, 0xa1, 0x94,
-	0xbd, 0xbc, 0xa0, 0xbb, 0xf3, 0x1e, 0x64, 0x16, 0xab, 0x3b, 0x83, 0x12, 0x6f, 0x63, 0x50, 0xea,
-	0xbd, 0x37, 0xd6, 0xc4, 0xa9, 0x6a, 0x72, 0x79, 0xf6, 0x18, 0xc9, 0x14, 0x75, 0x01, 0x66, 0x3d,
-	0x11, 0x7a, 0x27, 0xa5, 0x2c, 0xd9, 0x15, 0xaa, 0xda, 0x3c, 0x11, 0xf1, 0x25, 0x2a, 0xa0, 0x0b,
-	0x58, 0x17, 0x14, 0x28, 0xeb, 0x8a, 0xe5, 0x66, 0x6b, 0xa1, 0x85, 0x5f, 0x42, 0x35, 0xc6, 0xce,
-	0xd1, 0x83, 0xe4, 0x86, 0xac, 0x2e, 0x45, 0x7d, 0x77, 0x81, 0x54, 0x64, 0xea, 0x2f, 0xa0, 0x22,
-	0xb3, 0x69, 0x74, 0x3f, 0x65, 0x6f, 0xba, 0x03, 0x50, 0x1f, 0xcc, 0x17, 0x8a, 0x94, 0x7f, 0x09,
-	0x8d, 0x33, 0x4c, 0x12, 0x0f, 0xdf, 0xef, 0xa7, 0x11, 0x9a, 0xc9, 0xcb, 0xd5, 0x05, 0x05, 0x56,
-	0x2b, 0xa0, 0x29, 0x6c, 0x67, 0x70, 0x5f, 0xf4, 0x30, 0x0d, 0x8a, 0x3c, 0x12, 0xaf, 0x7e, 0x7b,
-	0x29, 0xd9, 0xc8, 0xa3, 0x17, 0x8c, 0x4e, 0xc7, 0x8f, 0x5b, 0xda, 0xa1, 0x7c, 0x56, 0xa0, 0x15,
-	0xd0, 0xe7, 0xb0, 0x2d, 0x62, 0x75, 0x2a, 0xd7, 0xfa, 0xa5, 0x95, 0xe7, 0xbe, 0xba, 0x69, 0x05,
-	0xf4, 0x14, 0x36, 0xa3, 0x26, 0x00, 0xed, 0x65, 0x68, 0x8c, 0x5f, 0xef, 0xbc, 0x67, 0x2e, 0x16,
-	0x83, 0x5a, 0xbc, 0x2b, 0x40, 0xef, 0x66, 0xa8, 0x4c, 0x77, 0x0d, 0x8b, 0xf3, 0xfa, 0x05, 0x54,
-	0x9f, 0x19, 0xde, 0xcb, 0x43, 0xc7, 0x39, 0xf4, 0x29, 0xcd, 0x4f, 0x67, 0x64, 0xaa, 0x55, 0x48,
-	0x67, 0x64, 0x46, 0x7f, 0x40, 0x6d, 0x2e, 0x4b, 0x94, 0x1f, 0xa5, 0x36, 0xa5, 0xdb, 0x07, 0xf5,
-	0xfe, 0x5c, 0x99, 0x48, 0x73, 0x17, 0x60, 0xc6, 0xf0, 0xd3, 0x06, 0xa7, 0x3a, 0x8a, 0xb4, 0xc1,
-	0x19, 0x0d, 0x02, 0xcb, 0x4b, 0x99, 0xc8, 0xa7, 0xf3, 0x32, 0xa3, 0x81, 0x48, 0xe7, 0x65, 0x66,
-	0x2f, 0xc0, 0x6c, 0x9e, 0x31, 0xe8, 0xb4, 0xcd, 0x29, 0xe2, 0x9e, 0xb6, 0x39, 0x83, 0x80, 0x17,
-	0x90, 0x01, 0xb5, 0x38, 0x39, 0x4f, 0x03, 0x23, 0xb3, 0x2f, 0x50, 0xdf, 0x5b, 0x24, 0x16, 0x1d,
-	0xa1, 0xc3, 0x66, 0x44, 0xc3, 0xd3, 0x48, 0x4e, 0x36, 0x00, 0xea, 0x3b, 0x73, 0x24, 0x22, 0x9d,
-	0x26, 0xa0, 0x34, 0x05, 0x47, 0xdf, 0xca, 0xdb, 0x9a, 0xa2, 0xe9, 0x6a, 0xae, 0x1d, 0xd2, 0x21,
-	0x5f, 0xb0, 0xc2, 0x11, 0xe7, 0x96, 0x59, 0xb9, 0x9d, 0xc5, 0x57, 0xd5, 0xd4, 0x57, 0x2e, 0x26,
-	0xa5, 0x15, 0xd0, 0x29, 0xac, 0x31, 0x2a, 0x96, 0xfe, 0xb0, 0xca, 0x54, 0x2f, 0xad, 0x27, 0xc6,
-	0xdf, 0x38, 0xea, 0x64, 0xa2, 0x93, 0x46, 0x5d, 0x06, 0x8b, 0x4b, 0xa3, 0x2e, 0x8b, 0x2b, 0x69,
-	0x85, 0xa3, 0x47, 0x9f, 0x3f, 0x1c, 0xda, 0x64, 0x14, 0xf4, 0xdb, 0xa6, 0x3b, 0x3e, 0x70, 0x02,
-	0xdb, 0x1f, 0x06, 0x57, 0xf8, 0x80, 0x6f, 0xa6, 0xad, 0xc1, 0x07, 0x43, 0xf7, 0x20, 0xfc, 0xbf,
-	0x40, 0xbf, 0xc4, 0xa6, 0x3e, 0xfc, 0x7f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x38, 0x4c, 0xff, 0xbb,
-	0x42, 0x20, 0x00, 0x00,
+	// 1380 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x58, 0xdd, 0x6e, 0x1b, 0x45,
+	0x14, 0xf6, 0x6e, 0x1a, 0x27, 0x3e, 0x8e, 0xed, 0x64, 0x9a, 0x26, 0x66, 0x5b, 0x48, 0x58, 0xda,
+	0x52, 0x55, 0x65, 0xdd, 0xba, 0x54, 0x42, 0x14, 0x2e, 0x5a, 0x07, 0x92, 0x48, 0x2d, 0xb4, 0x9b,
+	0x5a, 0xfc, 0x0a, 0x6b, 0xbc, 0x3b, 0x8e, 0x57, 0x5d, 0x7b, 0xcd, 0xee, 0x6c, 0x48, 0xee, 0x78,
+	0x02, 0x24, 0x24, 0x78, 0x13, 0xde, 0x80, 0xf7, 0x40, 0x5c, 0x20, 0xb8, 0xe0, 0x92, 0x17, 0x40,
+	0xf3, 0xb3, 0xeb, 0xfd, 0xb3, 0x5d, 0x14, 0xf5, 0x82, 0xde, 0x79, 0xe6, 0xfc, 0xcc, 0xf9, 0xce,
+	0x39, 0xf3, 0xcd, 0x59, 0x43, 0xdd, 0x1a, 0x12, 0xdf, 0xc3, 0x13, 0xc7, 0x98, 0xf8, 0x1e, 0xf5,
+	0x90, 0x58, 0x4f, 0x30, 0x75, 0x5c, 0x17, 0x4f, 0xfa, 0xda, 0xce, 0xb1, 0xe7, 0x1d, 0xbb, 0xa4,
+	0xc5, 0xa5, 0xfd, 0x70, 0xd0, 0xa2, 0xce, 0x88, 0x04, 0x14, 0x8f, 0x26, 0xc2, 0x40, 0xdb, 0xb0,
+	0x31, 0xc5, 0xbd, 0x81, 0xe7, 0x8f, 0x30, 0x95, 0x5b, 0x35, 0xcb, 0x1b, 0x53, 0x72, 0x1a, 0x2d,
+	0xeb, 0x23, 0x42, 0x31, 0xd3, 0x12, 0x6b, 0xfd, 0x47, 0x05, 0x56, 0x3a, 0x4c, 0x63, 0x4c, 0xd1,
+	0x26, 0x2c, 0x53, 0x87, 0xba, 0xa4, 0xa9, 0xec, 0x2a, 0x37, 0x2a, 0xa6, 0x58, 0xa0, 0x26, 0xac,
+	0x58, 0x42, 0xa1, 0xa9, 0xf2, 0xfd, 0x68, 0x89, 0xb6, 0x61, 0x65, 0x40, 0x7b, 0x03, 0xc7, 0x25,
+	0xcd, 0x25, 0x2e, 0x29, 0x0f, 0xe8, 0xc7, 0x8e, 0x4b, 0xd0, 0x87, 0xb0, 0x36, 0x09, 0xfb, 0xae,
+	0x13, 0x0c, 0x7b, 0x36, 0xa6, 0xa4, 0x79, 0x61, 0x57, 0xb9, 0x51, 0x6d, 0x6b, 0x86, 0x08, 0xdf,
+	0x88, 0xc2, 0x37, 0x9e, 0x45, 0xe1, 0x9b, 0x55, 0xa9, 0xbf, 0x87, 0x29, 0xd1, 0x9f, 0x42, 0x4d,
+	0x86, 0xf4, 0x20, 0xa4, 0x43, 0xcf, 0x47, 0x75, 0x50, 0x1d, 0x5b, 0x46, 0xa5, 0x3a, 0x36, 0xd2,
+	0x60, 0x35, 0x0c, 0x88, 0x3f, 0xc6, 0x23, 0x22, 0x63, 0x8a, 0xd7, 0x0c, 0x04, 0x76, 0x1d, 0x1c,
+	0xc8, 0x90, 0xc4, 0x42, 0xff, 0x47, 0x81, 0x86, 0xf4, 0xf9, 0x58, 0x26, 0x20, 0xe7, 0xb5, 0x09,
+	0x2b, 0x01, 0xb1, 0xa8, 0xe3, 0x8d, 0x23, 0xa0, 0x72, 0x89, 0xae, 0x40, 0x65, 0x42, 0xfc, 0x11,
+	0x76, 0x9d, 0xf1, 0x73, 0xe9, 0x77, 0xba, 0xc1, 0xec, 0xc2, 0xc9, 0x89, 0x47, 0x49, 0xc0, 0x81,
+	0xd6, 0xcc, 0x68, 0xc9, 0x24, 0x3e, 0x99, 0xb8, 0x0e, 0x09, 0x9a, 0xcb, 0x42, 0x22, 0x97, 0xe8,
+	0x32, 0x54, 0x98, 0x8a, 0xdf, 0x73, 0xec, 0xa0, 0x59, 0xde, 0x5d, 0x62, 0x10, 0xf8, 0xc6, 0xa1,
+	0x1d, 0xa0, 0x1d, 0xa8, 0x0a, 0x3d, 0x21, 0x5e, 0xe1, 0x62, 0x90, 0x5b, 0x4c, 0xe1, 0x3a, 0x34,
+	0x18, 0xde, 0xa0, 0xf7, 0xdd, 0xd0, 0xeb, 0x05, 0xf8, 0x84, 0xd8, 0xcd, 0x55, 0xae, 0x54, 0xe3,
+	0xdb, 0x9f, 0x0d, 0xbd, 0x23, 0xb6, 0xa9, 0xff, 0xa2, 0x40, 0x55, 0xa2, 0xde, 0x63, 0x88, 0xef,
+	0x41, 0x19, 0xf3, 0x8c, 0x72, 0xd4, 0xd5, 0xf6, 0xeb, 0x46, 0xba, 0xc1, 0x8c, 0x54, 0xda, 0x4d,
+	0xa9, 0x8c, 0xee, 0xa4, 0x3b, 0xa0, 0xda, 0xde, 0x9e, 0x61, 0x37, 0x6d, 0x8d, 0xfb, 0xb0, 0x1a,
+	0x35, 0x1a, 0x4f, 0x58, 0xb5, 0xbd, 0x33, 0xc3, 0x26, 0x2a, 0x87, 0x19, 0x1b, 0xe8, 0x5f, 0x03,
+	0x7c, 0xe2, 0x51, 0x67, 0x70, 0xd6, 0x0d, 0x88, 0xcf, 0xba, 0x8c, 0xa1, 0xea, 0xc5, 0xb5, 0x2a,
+	0xb3, 0xe5, 0xa1, 0x8d, 0xee, 0xc1, 0xda, 0x98, 0xa9, 0x39, 0x16, 0x8e, 0x8b, 0x56, 0x6d, 0x6f,
+	0x18, 0xcc, 0x87, 0xbc, 0x02, 0xdc, 0x8d, 0x99, 0x52, 0xd3, 0x7f, 0x53, 0xa0, 0x2e, 0xcf, 0x7e,
+	0x82, 0x29, 0x25, 0xfe, 0x98, 0x01, 0x9c, 0x88, 0x9f, 0x4d, 0x65, 0x77, 0xe9, 0x46, 0xbd, 0xbd,
+	0x6d, 0xc4, 0xd7, 0x44, 0xaa, 0x1e, 0x51, 0x4c, 0xc3, 0xc0, 0x8c, 0xf4, 0x58, 0x8d, 0x6c, 0x27,
+	0xb0, 0xb0, 0x6f, 0xf3, 0x1a, 0xa9, 0xa2, 0x46, 0x72, 0x8b, 0xd5, 0xe8, 0x2e, 0x54, 0x65, 0xfb,
+	0xf4, 0x2c, 0x7a, 0x2a, 0x93, 0xb0, 0x6e, 0x44, 0xb7, 0xf1, 0x48, 0xc8, 0x0e, 0x4a, 0x26, 0x48,
+	0xb5, 0x0e, 0x3d, 0x45, 0xb7, 0x01, 0xe8, 0xd0, 0x27, 0xd8, 0xe6, 0x36, 0xe2, 0xda, 0x34, 0x62,
+	0x9b, 0x67, 0x5c, 0x74, 0x50, 0x32, 0x2b, 0x42, 0xa9, 0x43, 0x4f, 0x1f, 0x6e, 0x40, 0x43, 0xe6,
+	0xbc, 0x27, 0xd5, 0xf4, 0xbf, 0x15, 0xa8, 0xef, 0x93, 0x31, 0xf1, 0xb1, 0x7b, 0x0e, 0x80, 0x9f,
+	0xe6, 0x01, 0x56, 0xdb, 0x46, 0xb6, 0x88, 0xe9, 0x73, 0x8c, 0xbd, 0x18, 0xff, 0x47, 0x63, 0xea,
+	0x9f, 0x25, 0x13, 0xa2, 0x75, 0xa1, 0x91, 0x11, 0xa3, 0x75, 0x58, 0x7a, 0x4e, 0xce, 0x64, 0x59,
+	0xd9, 0x4f, 0x74, 0x0b, 0x96, 0x4f, 0xb0, 0x1b, 0x12, 0x59, 0xcc, 0xad, 0xec, 0x79, 0x87, 0xf6,
+	0x23, 0x27, 0xa0, 0xa6, 0x50, 0x7a, 0x5f, 0x7d, 0x4f, 0xd1, 0xbf, 0x57, 0x61, 0x8d, 0x77, 0xfb,
+	0x39, 0xb0, 0x3e, 0x2e, 0xc2, 0x7a, 0x2b, 0x7b, 0x76, 0xf2, 0x94, 0x79, 0x48, 0x93, 0x1d, 0xbb,
+	0x94, 0xec, 0xd8, 0x97, 0x95, 0x02, 0x0d, 0xca, 0x62, 0x93, 0x79, 0x63, 0x00, 0x14, 0xde, 0x8d,
+	0xec, 0xa7, 0xfe, 0xab, 0x0a, 0x8d, 0x07, 0x16, 0x75, 0x4e, 0x1c, 0x7a, 0x76, 0x8e, 0x0c, 0x3d,
+	0x29, 0xca, 0x50, 0x2b, 0x1b, 0x5a, 0xe6, 0xa0, 0xb9, 0x49, 0xba, 0x0d, 0xcb, 0x9c, 0xac, 0xe4,
+	0xcd, 0x68, 0x66, 0x7d, 0xb1, 0xbb, 0xcf, 0x30, 0x1d, 0x94, 0x4c, 0xa1, 0x88, 0x5e, 0x9b, 0xa6,
+	0x95, 0xdd, 0x8c, 0xca, 0x41, 0x29, 0x4e, 0xec, 0xd1, 0x8b, 0x24, 0xf6, 0x66, 0x3a, 0xb1, 0x9b,
+	0x49, 0xa2, 0x88, 0x22, 0x4f, 0xa4, 0xf5, 0x61, 0x45, 0xd2, 0xde, 0x29, 0xd5, 0xaf, 0xc0, 0x6a,
+	0x14, 0x4f, 0x41, 0x8e, 0x7f, 0x50, 0x63, 0x9a, 0x35, 0x43, 0x97, 0xa0, 0x16, 0x5c, 0xe0, 0xc4,
+	0x27, 0x48, 0xf6, 0xf2, 0x0c, 0xe2, 0x63, 0x8c, 0x6c, 0x72, 0xc5, 0xcc, 0xb5, 0x57, 0x17, 0x5f,
+	0x7b, 0xc6, 0x2e, 0x96, 0x37, 0x1a, 0xf1, 0x6b, 0x5f, 0xc0, 0x2e, 0x1d, 0x21, 0x63, 0xec, 0x22,
+	0xd5, 0x98, 0xd1, 0x07, 0x50, 0x0f, 0xc2, 0x7e, 0xd2, 0x4e, 0x30, 0xcc, 0xc5, 0x29, 0x2b, 0xc5,
+	0xe2, 0x83, 0x92, 0x59, 0x9b, 0x2a, 0x33, 0xeb, 0x2d, 0x28, 0x07, 0xbc, 0x2b, 0xf8, 0x5b, 0x56,
+	0x31, 0xe5, 0xaa, 0x88, 0x81, 0x7e, 0x57, 0xa0, 0xd6, 0xe5, 0x6f, 0xa0, 0x49, 0xbe, 0x0d, 0x49,
+	0x40, 0x67, 0x93, 0xf8, 0xff, 0x01, 0x7a, 0x11, 0xc4, 0x3f, 0x14, 0xd8, 0xe8, 0x8e, 0x6d, 0xef,
+	0x15, 0x87, 0xb9, 0x09, 0x28, 0x89, 0x32, 0x98, 0x78, 0xe3, 0x80, 0xe8, 0x3f, 0xab, 0xec, 0x09,
+	0xe5, 0x76, 0x11, 0xf2, 0xc4, 0x94, 0xa8, 0xcc, 0x9c, 0x12, 0xd5, 0xd4, 0x94, 0x38, 0x8b, 0x26,
+	0xcf, 0x39, 0x3e, 0x66, 0x72, 0xbd, 0xfc, 0xdf, 0x73, 0x5d, 0x7e, 0x91, 0x5c, 0x17, 0x65, 0xeb,
+	0x2f, 0x05, 0x36, 0xf7, 0x88, 0x4b, 0x28, 0x89, 0xe8, 0xe0, 0x55, 0xed, 0x8b, 0x6d, 0xb8, 0x94,
+	0x01, 0x2a, 0x5b, 0xe3, 0x27, 0x05, 0x2e, 0x76, 0x7c, 0x82, 0x29, 0x11, 0xc1, 0x47, 0x19, 0xb8,
+	0x93, 0xee, 0x8f, 0x17, 0x99, 0x21, 0xef, 0xa4, 0x27, 0x28, 0xb5, 0x78, 0x82, 0x4a, 0xcd, 0x4f,
+	0xb3, 0x5a, 0x4a, 0x7f, 0x17, 0x36, 0xd3, 0x51, 0x89, 0x70, 0xd3, 0x93, 0xbd, 0x92, 0x99, 0xec,
+	0xf5, 0xfb, 0xb0, 0xbe, 0x4f, 0x68, 0x1a, 0xc8, 0xdb, 0x50, 0x16, 0xc5, 0x90, 0x38, 0xb2, 0xd5,
+	0x32, 0xa5, 0x58, 0xef, 0xc3, 0xa5, 0x7d, 0x42, 0xa7, 0x79, 0x0d, 0xa6, 0xa9, 0x48, 0x55, 0x50,
+	0x29, 0xae, 0x60, 0xaa, 0x7e, 0x5b, 0x50, 0xf6, 0x06, 0x83, 0x80, 0x88, 0x01, 0xbc, 0x66, 0xca,
+	0x95, 0xde, 0x85, 0x0d, 0x36, 0x95, 0xa4, 0x23, 0x9c, 0xd9, 0x6c, 0xd3, 0xd0, 0xd5, 0xf9, 0xa1,
+	0x6f, 0x02, 0x4a, 0xba, 0x95, 0xa5, 0xfd, 0x02, 0x2e, 0x31, 0x2e, 0x78, 0x19, 0x07, 0x36, 0x61,
+	0x2b, 0xeb, 0x5a, 0x1c, 0xda, 0xfe, 0x73, 0x15, 0xd6, 0x3b, 0x7e, 0x68, 0x77, 0x12, 0xcd, 0x82,
+	0x9e, 0x42, 0xdd, 0x24, 0xd6, 0x99, 0xe5, 0x46, 0xed, 0x87, 0xde, 0x98, 0xd1, 0x4d, 0x72, 0x12,
+	0xd1, 0x66, 0x3d, 0xc2, 0xec, 0xbd, 0xd6, 0x4b, 0xb7, 0x95, 0x84, 0x4b, 0x39, 0xd2, 0xe6, 0x5d,
+	0xa6, 0x67, 0xdd, 0xc5, 0x2e, 0x8f, 0xa0, 0x21, 0x5d, 0x46, 0xd3, 0x05, 0xda, 0x59, 0x30, 0x31,
+	0x2d, 0x76, 0xfa, 0x18, 0xd6, 0xa4, 0x53, 0x3e, 0x8e, 0xa2, 0x2b, 0xf3, 0xa6, 0xd4, 0xc5, 0xee,
+	0xf6, 0xa1, 0x2c, 0xb8, 0x1d, 0xe5, 0xbe, 0x05, 0x53, 0x2f, 0x9b, 0xa6, 0x65, 0xc5, 0xd3, 0x2f,
+	0x34, 0xee, 0xa8, 0x0b, 0x30, 0x7d, 0x28, 0xd0, 0x9b, 0x39, 0x67, 0xd9, 0xa7, 0x52, 0xd3, 0xe7,
+	0xa9, 0xc8, 0x8e, 0x2b, 0xa1, 0x43, 0x58, 0x91, 0xf7, 0xa1, 0xa8, 0xc4, 0xc9, 0x17, 0x68, 0x61,
+	0x84, 0xdf, 0x40, 0x2d, 0x45, 0x59, 0xe8, 0x6a, 0xd6, 0xa0, 0x88, 0xba, 0xb5, 0x6b, 0x0b, 0xb4,
+	0xe2, 0x50, 0xbf, 0x82, 0xb5, 0x24, 0xc5, 0xa0, 0xb7, 0x72, 0xf1, 0xe6, 0x69, 0x51, 0xbb, 0x3a,
+	0x5f, 0x29, 0x76, 0xfe, 0x08, 0x2a, 0x31, 0x13, 0xa1, 0xdd, 0x7c, 0x67, 0xa6, 0x49, 0x4a, 0x9b,
+	0x37, 0x73, 0xea, 0x25, 0xf4, 0x39, 0xfb, 0x40, 0x4c, 0x52, 0x13, 0xba, 0x56, 0xe0, 0x32, 0x4f,
+	0x5d, 0x8b, 0xfb, 0xa9, 0x0b, 0x30, 0xbd, 0xc4, 0xf9, 0x36, 0xc8, 0x71, 0x47, 0xbe, 0x0d, 0x0a,
+	0x88, 0xa7, 0x84, 0x30, 0xd4, 0xd3, 0xfc, 0x90, 0x0f, 0xb8, 0x90, 0x9a, 0xb4, 0xeb, 0x8b, 0xd4,
+	0xa2, 0x23, 0x1e, 0xde, 0xfa, 0xf2, 0xe6, 0xb1, 0x43, 0x87, 0x61, 0xdf, 0xb0, 0xbc, 0x51, 0xcb,
+	0x0d, 0x9d, 0xe0, 0x38, 0x3c, 0x21, 0x2d, 0x61, 0xce, 0x26, 0x8e, 0x77, 0x8e, 0xbd, 0x56, 0xf4,
+	0xff, 0x5c, 0xbf, 0xcc, 0xb7, 0xee, 0xfe, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x84, 0xde, 0x89, 0x74,
+	0xb2, 0x13, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -3037,40 +1875,14 @@ type CrudCheropatillaClient interface {
 	DeleteContent(ctx context1.Context, in *DeleteContentRequest, opts ...grpc.CallOption) (*DeleteContentResponse, error)
 	// Post a thread to create
 	CreateThread(ctx context1.Context, in *CreateThreadRequest, opts ...grpc.CallOption) (*CreateThreadResponse, error)
-	// Get a user's basic data to be displayed in the header navigation section
-	GetUserHeaderData(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*UserHeaderData, error)
-	// Update a user's basic data
-	UpdateBasicUserData(ctx context1.Context, in *UpdateBasicUserDataRequest, opts ...grpc.CallOption) (*UpdateBasicUserDataResponse, error)
-	// Get a user's basic data to be dislayed in page
-	GetBasicUserData(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*dataformat.BasicUserData, error)
-	// Get the list of users followed by a given user
-	GetUserFollowingIds(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*UserList, error)
 	// Get a single thread
 	GetThread(ctx context1.Context, in *GetThreadRequest, opts ...grpc.CallOption) (*ContentData, error)
 	// Get a comment's comments
 	GetSubcomments(ctx context1.Context, in *GetSubcommentsRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetSubcommentsClient, error)
-	// Mark unread notifications as read
-	MarkAllAsRead(ctx context1.Context, in *ReadNotifsRequest, opts ...grpc.CallOption) (*ReadNotifsResponse, error)
-	// Clear all the notifications
-	ClearNotifs(ctx context1.Context, in *ClearNotifsRequest, opts ...grpc.CallOption) (*ClearNotifsResponse, error)
-	// Follow a user
-	FollowUser(ctx context1.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error)
-	// Unfollow a user
-	UnfollowUser(ctx context1.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error)
 	// Request to save thread
 	SaveThread(ctx context1.Context, in *SaveThreadRequest, opts ...grpc.CallOption) (*SaveThreadResponse, error)
 	// Request to remove thread from user's list of saved threads
 	UndoSaveThread(ctx context1.Context, in *UndoSaveThreadRequest, opts ...grpc.CallOption) (*UndoSaveThreadResponse, error)
-	// Get either following or followers users' basic data
-	ViewUsers(ctx context1.Context, in *ViewUsersRequest, opts ...grpc.CallOption) (*ViewUsersResponse, error)
-	// Get username basic data, following, followers and threads created
-	ViewUserByUsername(ctx context1.Context, in *ViewUserByUsernameRequest, opts ...grpc.CallOption) (*ViewUserResponse, error)
-	// Get dashboard data for a given user
-	GetDashboardData(ctx context1.Context, in *GetDashboardDataRequest, opts ...grpc.CallOption) (*DashboardData, error)
-	// Validate user credentials to login
-	Login(ctx context1.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	// Register new user
-	RegisterUser(ctx context1.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error)
 }
 
 type crudCheropatillaClient struct {
@@ -3300,42 +2112,6 @@ func (c *crudCheropatillaClient) CreateThread(ctx context1.Context, in *CreateTh
 	return out, nil
 }
 
-func (c *crudCheropatillaClient) GetUserHeaderData(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*UserHeaderData, error) {
-	out := new(UserHeaderData)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/GetUserHeaderData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) UpdateBasicUserData(ctx context1.Context, in *UpdateBasicUserDataRequest, opts ...grpc.CallOption) (*UpdateBasicUserDataResponse, error) {
-	out := new(UpdateBasicUserDataResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/UpdateBasicUserData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) GetBasicUserData(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*dataformat.BasicUserData, error) {
-	out := new(dataformat.BasicUserData)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/GetBasicUserData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) GetUserFollowingIds(ctx context1.Context, in *GetBasicUserDataRequest, opts ...grpc.CallOption) (*UserList, error) {
-	out := new(UserList)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/GetUserFollowingIds", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *crudCheropatillaClient) GetThread(ctx context1.Context, in *GetThreadRequest, opts ...grpc.CallOption) (*ContentData, error) {
 	out := new(ContentData)
 	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/GetThread", in, out, opts...)
@@ -3377,42 +2153,6 @@ func (x *crudCheropatillaGetSubcommentsClient) Recv() (*ContentRule, error) {
 	return m, nil
 }
 
-func (c *crudCheropatillaClient) MarkAllAsRead(ctx context1.Context, in *ReadNotifsRequest, opts ...grpc.CallOption) (*ReadNotifsResponse, error) {
-	out := new(ReadNotifsResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/MarkAllAsRead", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) ClearNotifs(ctx context1.Context, in *ClearNotifsRequest, opts ...grpc.CallOption) (*ClearNotifsResponse, error) {
-	out := new(ClearNotifsResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/ClearNotifs", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) FollowUser(ctx context1.Context, in *FollowUserRequest, opts ...grpc.CallOption) (*FollowUserResponse, error) {
-	out := new(FollowUserResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/FollowUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) UnfollowUser(ctx context1.Context, in *UnfollowUserRequest, opts ...grpc.CallOption) (*UnfollowUserResponse, error) {
-	out := new(UnfollowUserResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/UnfollowUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *crudCheropatillaClient) SaveThread(ctx context1.Context, in *SaveThreadRequest, opts ...grpc.CallOption) (*SaveThreadResponse, error) {
 	out := new(SaveThreadResponse)
 	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/SaveThread", in, out, opts...)
@@ -3425,51 +2165,6 @@ func (c *crudCheropatillaClient) SaveThread(ctx context1.Context, in *SaveThread
 func (c *crudCheropatillaClient) UndoSaveThread(ctx context1.Context, in *UndoSaveThreadRequest, opts ...grpc.CallOption) (*UndoSaveThreadResponse, error) {
 	out := new(UndoSaveThreadResponse)
 	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/UndoSaveThread", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) ViewUsers(ctx context1.Context, in *ViewUsersRequest, opts ...grpc.CallOption) (*ViewUsersResponse, error) {
-	out := new(ViewUsersResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/ViewUsers", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) ViewUserByUsername(ctx context1.Context, in *ViewUserByUsernameRequest, opts ...grpc.CallOption) (*ViewUserResponse, error) {
-	out := new(ViewUserResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/ViewUserByUsername", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) GetDashboardData(ctx context1.Context, in *GetDashboardDataRequest, opts ...grpc.CallOption) (*DashboardData, error) {
-	out := new(DashboardData)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/GetDashboardData", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) Login(ctx context1.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
-	out := new(LoginResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/Login", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *crudCheropatillaClient) RegisterUser(ctx context1.Context, in *RegisterUserRequest, opts ...grpc.CallOption) (*RegisterUserResponse, error) {
-	out := new(RegisterUserResponse)
-	err := c.cc.Invoke(ctx, "/cheropatillapb.CrudCheropatilla/RegisterUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3507,40 +2202,14 @@ type CrudCheropatillaServer interface {
 	DeleteContent(context1.Context, *DeleteContentRequest) (*DeleteContentResponse, error)
 	// Post a thread to create
 	CreateThread(context1.Context, *CreateThreadRequest) (*CreateThreadResponse, error)
-	// Get a user's basic data to be displayed in the header navigation section
-	GetUserHeaderData(context1.Context, *GetBasicUserDataRequest) (*UserHeaderData, error)
-	// Update a user's basic data
-	UpdateBasicUserData(context1.Context, *UpdateBasicUserDataRequest) (*UpdateBasicUserDataResponse, error)
-	// Get a user's basic data to be dislayed in page
-	GetBasicUserData(context1.Context, *GetBasicUserDataRequest) (*dataformat.BasicUserData, error)
-	// Get the list of users followed by a given user
-	GetUserFollowingIds(context1.Context, *GetBasicUserDataRequest) (*UserList, error)
 	// Get a single thread
 	GetThread(context1.Context, *GetThreadRequest) (*ContentData, error)
 	// Get a comment's comments
 	GetSubcomments(*GetSubcommentsRequest, CrudCheropatilla_GetSubcommentsServer) error
-	// Mark unread notifications as read
-	MarkAllAsRead(context1.Context, *ReadNotifsRequest) (*ReadNotifsResponse, error)
-	// Clear all the notifications
-	ClearNotifs(context1.Context, *ClearNotifsRequest) (*ClearNotifsResponse, error)
-	// Follow a user
-	FollowUser(context1.Context, *FollowUserRequest) (*FollowUserResponse, error)
-	// Unfollow a user
-	UnfollowUser(context1.Context, *UnfollowUserRequest) (*UnfollowUserResponse, error)
 	// Request to save thread
 	SaveThread(context1.Context, *SaveThreadRequest) (*SaveThreadResponse, error)
 	// Request to remove thread from user's list of saved threads
 	UndoSaveThread(context1.Context, *UndoSaveThreadRequest) (*UndoSaveThreadResponse, error)
-	// Get either following or followers users' basic data
-	ViewUsers(context1.Context, *ViewUsersRequest) (*ViewUsersResponse, error)
-	// Get username basic data, following, followers and threads created
-	ViewUserByUsername(context1.Context, *ViewUserByUsernameRequest) (*ViewUserResponse, error)
-	// Get dashboard data for a given user
-	GetDashboardData(context1.Context, *GetDashboardDataRequest) (*DashboardData, error)
-	// Validate user credentials to login
-	Login(context1.Context, *LoginRequest) (*LoginResponse, error)
-	// Register new user
-	RegisterUser(context1.Context, *RegisterUserRequest) (*RegisterUserResponse, error)
 }
 
 // UnimplementedCrudCheropatillaServer can be embedded to have forward compatible implementations.
@@ -3574,56 +2243,17 @@ func (*UnimplementedCrudCheropatillaServer) DeleteContent(ctx context1.Context, 
 func (*UnimplementedCrudCheropatillaServer) CreateThread(ctx context1.Context, req *CreateThreadRequest) (*CreateThreadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateThread not implemented")
 }
-func (*UnimplementedCrudCheropatillaServer) GetUserHeaderData(ctx context1.Context, req *GetBasicUserDataRequest) (*UserHeaderData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserHeaderData not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) UpdateBasicUserData(ctx context1.Context, req *UpdateBasicUserDataRequest) (*UpdateBasicUserDataResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateBasicUserData not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) GetBasicUserData(ctx context1.Context, req *GetBasicUserDataRequest) (*dataformat.BasicUserData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBasicUserData not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) GetUserFollowingIds(ctx context1.Context, req *GetBasicUserDataRequest) (*UserList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserFollowingIds not implemented")
-}
 func (*UnimplementedCrudCheropatillaServer) GetThread(ctx context1.Context, req *GetThreadRequest) (*ContentData, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetThread not implemented")
 }
 func (*UnimplementedCrudCheropatillaServer) GetSubcomments(req *GetSubcommentsRequest, srv CrudCheropatilla_GetSubcommentsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetSubcomments not implemented")
 }
-func (*UnimplementedCrudCheropatillaServer) MarkAllAsRead(ctx context1.Context, req *ReadNotifsRequest) (*ReadNotifsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MarkAllAsRead not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) ClearNotifs(ctx context1.Context, req *ClearNotifsRequest) (*ClearNotifsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClearNotifs not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) FollowUser(ctx context1.Context, req *FollowUserRequest) (*FollowUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FollowUser not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) UnfollowUser(ctx context1.Context, req *UnfollowUserRequest) (*UnfollowUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnfollowUser not implemented")
-}
 func (*UnimplementedCrudCheropatillaServer) SaveThread(ctx context1.Context, req *SaveThreadRequest) (*SaveThreadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveThread not implemented")
 }
 func (*UnimplementedCrudCheropatillaServer) UndoSaveThread(ctx context1.Context, req *UndoSaveThreadRequest) (*UndoSaveThreadResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UndoSaveThread not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) ViewUsers(ctx context1.Context, req *ViewUsersRequest) (*ViewUsersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ViewUsers not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) ViewUserByUsername(ctx context1.Context, req *ViewUserByUsernameRequest) (*ViewUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ViewUserByUsername not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) GetDashboardData(ctx context1.Context, req *GetDashboardDataRequest) (*DashboardData, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetDashboardData not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) Login(ctx context1.Context, req *LoginRequest) (*LoginResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
-}
-func (*UnimplementedCrudCheropatillaServer) RegisterUser(ctx context1.Context, req *RegisterUserRequest) (*RegisterUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
 }
 
 func RegisterCrudCheropatillaServer(s *grpc.Server, srv CrudCheropatillaServer) {
@@ -3810,78 +2440,6 @@ func _CrudCheropatilla_CreateThread_Handler(srv interface{}, ctx context1.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CrudCheropatilla_GetUserHeaderData_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBasicUserDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).GetUserHeaderData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/GetUserHeaderData",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).GetUserHeaderData(ctx, req.(*GetBasicUserDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_UpdateBasicUserData_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateBasicUserDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).UpdateBasicUserData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/UpdateBasicUserData",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).UpdateBasicUserData(ctx, req.(*UpdateBasicUserDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_GetBasicUserData_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBasicUserDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).GetBasicUserData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/GetBasicUserData",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).GetBasicUserData(ctx, req.(*GetBasicUserDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_GetUserFollowingIds_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBasicUserDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).GetUserFollowingIds(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/GetUserFollowingIds",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).GetUserFollowingIds(ctx, req.(*GetBasicUserDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CrudCheropatilla_GetThread_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetThreadRequest)
 	if err := dec(in); err != nil {
@@ -3921,78 +2479,6 @@ func (x *crudCheropatillaGetSubcommentsServer) Send(m *ContentRule) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _CrudCheropatilla_MarkAllAsRead_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadNotifsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).MarkAllAsRead(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/MarkAllAsRead",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).MarkAllAsRead(ctx, req.(*ReadNotifsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_ClearNotifs_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClearNotifsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).ClearNotifs(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/ClearNotifs",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).ClearNotifs(ctx, req.(*ClearNotifsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_FollowUser_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FollowUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).FollowUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/FollowUser",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).FollowUser(ctx, req.(*FollowUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_UnfollowUser_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UnfollowUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).UnfollowUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/UnfollowUser",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).UnfollowUser(ctx, req.(*UnfollowUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CrudCheropatilla_SaveThread_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SaveThreadRequest)
 	if err := dec(in); err != nil {
@@ -4029,96 +2515,6 @@ func _CrudCheropatilla_UndoSaveThread_Handler(srv interface{}, ctx context1.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CrudCheropatilla_ViewUsers_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ViewUsersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).ViewUsers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/ViewUsers",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).ViewUsers(ctx, req.(*ViewUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_ViewUserByUsername_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ViewUserByUsernameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).ViewUserByUsername(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/ViewUserByUsername",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).ViewUserByUsername(ctx, req.(*ViewUserByUsernameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_GetDashboardData_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetDashboardDataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).GetDashboardData(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/GetDashboardData",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).GetDashboardData(ctx, req.(*GetDashboardDataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_Login_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).Login(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/Login",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).Login(ctx, req.(*LoginRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CrudCheropatilla_RegisterUser_Handler(srv interface{}, ctx context1.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CrudCheropatillaServer).RegisterUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/cheropatillapb.CrudCheropatilla/RegisterUser",
-	}
-	handler := func(ctx context1.Context, req interface{}) (interface{}, error) {
-		return srv.(CrudCheropatillaServer).RegisterUser(ctx, req.(*RegisterUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _CrudCheropatilla_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cheropatillapb.CrudCheropatilla",
 	HandlerType: (*CrudCheropatillaServer)(nil),
@@ -4136,40 +2532,8 @@ var _CrudCheropatilla_serviceDesc = grpc.ServiceDesc{
 			Handler:    _CrudCheropatilla_CreateThread_Handler,
 		},
 		{
-			MethodName: "GetUserHeaderData",
-			Handler:    _CrudCheropatilla_GetUserHeaderData_Handler,
-		},
-		{
-			MethodName: "UpdateBasicUserData",
-			Handler:    _CrudCheropatilla_UpdateBasicUserData_Handler,
-		},
-		{
-			MethodName: "GetBasicUserData",
-			Handler:    _CrudCheropatilla_GetBasicUserData_Handler,
-		},
-		{
-			MethodName: "GetUserFollowingIds",
-			Handler:    _CrudCheropatilla_GetUserFollowingIds_Handler,
-		},
-		{
 			MethodName: "GetThread",
 			Handler:    _CrudCheropatilla_GetThread_Handler,
-		},
-		{
-			MethodName: "MarkAllAsRead",
-			Handler:    _CrudCheropatilla_MarkAllAsRead_Handler,
-		},
-		{
-			MethodName: "ClearNotifs",
-			Handler:    _CrudCheropatilla_ClearNotifs_Handler,
-		},
-		{
-			MethodName: "FollowUser",
-			Handler:    _CrudCheropatilla_FollowUser_Handler,
-		},
-		{
-			MethodName: "UnfollowUser",
-			Handler:    _CrudCheropatilla_UnfollowUser_Handler,
 		},
 		{
 			MethodName: "SaveThread",
@@ -4178,26 +2542,6 @@ var _CrudCheropatilla_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UndoSaveThread",
 			Handler:    _CrudCheropatilla_UndoSaveThread_Handler,
-		},
-		{
-			MethodName: "ViewUsers",
-			Handler:    _CrudCheropatilla_ViewUsers_Handler,
-		},
-		{
-			MethodName: "ViewUserByUsername",
-			Handler:    _CrudCheropatilla_ViewUserByUsername_Handler,
-		},
-		{
-			MethodName: "GetDashboardData",
-			Handler:    _CrudCheropatilla_GetDashboardData_Handler,
-		},
-		{
-			MethodName: "Login",
-			Handler:    _CrudCheropatilla_Login_Handler,
-		},
-		{
-			MethodName: "RegisterUser",
-			Handler:    _CrudCheropatilla_RegisterUser_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
