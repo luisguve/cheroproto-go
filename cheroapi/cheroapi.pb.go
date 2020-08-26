@@ -566,71 +566,27 @@ func (m *SavedPattern) GetUserId() string {
 	return ""
 }
 
-// IdList holds a list of ids of content
-type IdList struct {
-	Ids                  []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *IdList) Reset()         { *m = IdList{} }
-func (m *IdList) String() string { return proto.CompactTextString(m) }
-func (*IdList) ProtoMessage()    {}
-func (*IdList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{8}
-}
-
-func (m *IdList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_IdList.Unmarshal(m, b)
-}
-func (m *IdList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_IdList.Marshal(b, m, deterministic)
-}
-func (m *IdList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IdList.Merge(m, src)
-}
-func (m *IdList) XXX_Size() int {
-	return xxx_messageInfo_IdList.Size(m)
-}
-func (m *IdList) XXX_DiscardUnknown() {
-	xxx_messageInfo_IdList.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_IdList proto.InternalMessageInfo
-
-func (m *IdList) GetIds() []string {
-	if m != nil {
-		return m.Ids
-	}
-	return nil
-}
-
 // ActivityPattern holds an array of ContentStatus, composing up a pattern of content
-// that's expected to get back. It is intended for recycling activity from a specific
-// user or a list of users.
+// that's expected to get back. It is intended for recycling activity from different
+// users.
 type ActivityPattern struct {
 	Pattern []metadata.ContentStatus `protobuf:"varint,1,rep,packed,name=pattern,proto3,enum=metadata.ContentStatus" json:"pattern,omitempty"`
 	// discard_ids is a map of user_ids to activity from the user referred to by
 	// the key that must not be returned back, since it's content the user has
 	// already seen.
 	DiscardIds map[string]*dataformat.Activity `protobuf:"bytes,2,rep,name=discard_ids,json=discardIds,proto3" json:"discard_ids,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	// context is either users following or the user itself.
-	//
-	// Types that are valid to be assigned to Context:
-	//	*ActivityPattern_Users
-	//	*ActivityPattern_UserId
-	Context              isActivityPattern_Context `protobuf_oneof:"context"`
-	XXX_NoUnkeyedLiteral struct{}                  `json:"-"`
-	XXX_unrecognized     []byte                    `json:"-"`
-	XXX_sizecache        int32                     `json:"-"`
+	// users holds the list of users to get their activity.
+	Users                []string `protobuf:"bytes,3,rep,name=users,proto3" json:"users,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ActivityPattern) Reset()         { *m = ActivityPattern{} }
 func (m *ActivityPattern) String() string { return proto.CompactTextString(m) }
 func (*ActivityPattern) ProtoMessage()    {}
 func (*ActivityPattern) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{9}
+	return fileDescriptor_b3591c2d7d53bb31, []int{8}
 }
 
 func (m *ActivityPattern) XXX_Unmarshal(b []byte) error {
@@ -665,85 +621,47 @@ func (m *ActivityPattern) GetDiscardIds() map[string]*dataformat.Activity {
 	return nil
 }
 
-type isActivityPattern_Context interface {
-	isActivityPattern_Context()
-}
-
-type ActivityPattern_Users struct {
-	Users *UserList `protobuf:"bytes,3,opt,name=users,proto3,oneof"`
-}
-
-type ActivityPattern_UserId struct {
-	UserId string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3,oneof"`
-}
-
-func (*ActivityPattern_Users) isActivityPattern_Context() {}
-
-func (*ActivityPattern_UserId) isActivityPattern_Context() {}
-
-func (m *ActivityPattern) GetContext() isActivityPattern_Context {
+func (m *ActivityPattern) GetUsers() []string {
 	if m != nil {
-		return m.Context
+		return m.Users
 	}
 	return nil
 }
 
-func (m *ActivityPattern) GetUsers() *UserList {
-	if x, ok := m.GetContext().(*ActivityPattern_Users); ok {
-		return x.Users
-	}
-	return nil
-}
-
-func (m *ActivityPattern) GetUserId() string {
-	if x, ok := m.GetContext().(*ActivityPattern_UserId); ok {
-		return x.UserId
-	}
-	return ""
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*ActivityPattern) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*ActivityPattern_Users)(nil),
-		(*ActivityPattern_UserId)(nil),
-	}
-}
-
-// UserList holds a list of user ids
-type UserList struct {
+// IdList holds a list of ids of content
+type IdList struct {
 	Ids                  []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserList) Reset()         { *m = UserList{} }
-func (m *UserList) String() string { return proto.CompactTextString(m) }
-func (*UserList) ProtoMessage()    {}
-func (*UserList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{10}
+func (m *IdList) Reset()         { *m = IdList{} }
+func (m *IdList) String() string { return proto.CompactTextString(m) }
+func (*IdList) ProtoMessage()    {}
+func (*IdList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{9}
 }
 
-func (m *UserList) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UserList.Unmarshal(m, b)
+func (m *IdList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IdList.Unmarshal(m, b)
 }
-func (m *UserList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UserList.Marshal(b, m, deterministic)
+func (m *IdList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IdList.Marshal(b, m, deterministic)
 }
-func (m *UserList) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UserList.Merge(m, src)
+func (m *IdList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IdList.Merge(m, src)
 }
-func (m *UserList) XXX_Size() int {
-	return xxx_messageInfo_UserList.Size(m)
+func (m *IdList) XXX_Size() int {
+	return xxx_messageInfo_IdList.Size(m)
 }
-func (m *UserList) XXX_DiscardUnknown() {
-	xxx_messageInfo_UserList.DiscardUnknown(m)
+func (m *IdList) XXX_DiscardUnknown() {
+	xxx_messageInfo_IdList.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UserList proto.InternalMessageInfo
+var xxx_messageInfo_IdList proto.InternalMessageInfo
 
-func (m *UserList) GetIds() []string {
+func (m *IdList) GetIds() []string {
 	if m != nil {
 		return m.Ids
 	}
@@ -769,7 +687,7 @@ func (m *ContentRule) Reset()         { *m = ContentRule{} }
 func (m *ContentRule) String() string { return proto.CompactTextString(m) }
 func (*ContentRule) ProtoMessage()    {}
 func (*ContentRule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{11}
+	return fileDescriptor_b3591c2d7d53bb31, []int{10}
 }
 
 func (m *ContentRule) XXX_Unmarshal(b []byte) error {
@@ -882,7 +800,7 @@ func (m *UpvoteRequest) Reset()         { *m = UpvoteRequest{} }
 func (m *UpvoteRequest) String() string { return proto.CompactTextString(m) }
 func (*UpvoteRequest) ProtoMessage()    {}
 func (*UpvoteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{12}
+	return fileDescriptor_b3591c2d7d53bb31, []int{11}
 }
 
 func (m *UpvoteRequest) XXX_Unmarshal(b []byte) error {
@@ -988,7 +906,7 @@ func (m *UndoUpvoteRequest) Reset()         { *m = UndoUpvoteRequest{} }
 func (m *UndoUpvoteRequest) String() string { return proto.CompactTextString(m) }
 func (*UndoUpvoteRequest) ProtoMessage()    {}
 func (*UndoUpvoteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{13}
+	return fileDescriptor_b3591c2d7d53bb31, []int{12}
 }
 
 func (m *UndoUpvoteRequest) XXX_Unmarshal(b []byte) error {
@@ -1085,7 +1003,7 @@ func (m *UndoUpvoteResponse) Reset()         { *m = UndoUpvoteResponse{} }
 func (m *UndoUpvoteResponse) String() string { return proto.CompactTextString(m) }
 func (*UndoUpvoteResponse) ProtoMessage()    {}
 func (*UndoUpvoteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{14}
+	return fileDescriptor_b3591c2d7d53bb31, []int{13}
 }
 
 func (m *UndoUpvoteResponse) XXX_Unmarshal(b []byte) error {
@@ -1128,7 +1046,7 @@ func (m *CommentRequest) Reset()         { *m = CommentRequest{} }
 func (m *CommentRequest) String() string { return proto.CompactTextString(m) }
 func (*CommentRequest) ProtoMessage()    {}
 func (*CommentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{15}
+	return fileDescriptor_b3591c2d7d53bb31, []int{14}
 }
 
 func (m *CommentRequest) XXX_Unmarshal(b []byte) error {
@@ -1241,7 +1159,7 @@ func (m *DeleteContentRequest) Reset()         { *m = DeleteContentRequest{} }
 func (m *DeleteContentRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteContentRequest) ProtoMessage()    {}
 func (*DeleteContentRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{16}
+	return fileDescriptor_b3591c2d7d53bb31, []int{15}
 }
 
 func (m *DeleteContentRequest) XXX_Unmarshal(b []byte) error {
@@ -1338,7 +1256,7 @@ func (m *DeleteContentResponse) Reset()         { *m = DeleteContentResponse{} }
 func (m *DeleteContentResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteContentResponse) ProtoMessage()    {}
 func (*DeleteContentResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{17}
+	return fileDescriptor_b3591c2d7d53bb31, []int{16}
 }
 
 func (m *DeleteContentResponse) XXX_Unmarshal(b []byte) error {
@@ -1374,7 +1292,7 @@ func (m *CreateThreadRequest) Reset()         { *m = CreateThreadRequest{} }
 func (m *CreateThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateThreadRequest) ProtoMessage()    {}
 func (*CreateThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{18}
+	return fileDescriptor_b3591c2d7d53bb31, []int{17}
 }
 
 func (m *CreateThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1428,7 +1346,7 @@ func (m *CreateThreadResponse) Reset()         { *m = CreateThreadResponse{} }
 func (m *CreateThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateThreadResponse) ProtoMessage()    {}
 func (*CreateThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{19}
+	return fileDescriptor_b3591c2d7d53bb31, []int{18}
 }
 
 func (m *CreateThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -1468,7 +1386,7 @@ func (m *GetThreadRequest) Reset()         { *m = GetThreadRequest{} }
 func (m *GetThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*GetThreadRequest) ProtoMessage()    {}
 func (*GetThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{20}
+	return fileDescriptor_b3591c2d7d53bb31, []int{19}
 }
 
 func (m *GetThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1512,7 +1430,7 @@ func (m *GetSubcommentsRequest) Reset()         { *m = GetSubcommentsRequest{} }
 func (m *GetSubcommentsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetSubcommentsRequest) ProtoMessage()    {}
 func (*GetSubcommentsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{21}
+	return fileDescriptor_b3591c2d7d53bb31, []int{20}
 }
 
 func (m *GetSubcommentsRequest) XXX_Unmarshal(b []byte) error {
@@ -1561,7 +1479,7 @@ func (m *SaveThreadRequest) Reset()         { *m = SaveThreadRequest{} }
 func (m *SaveThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*SaveThreadRequest) ProtoMessage()    {}
 func (*SaveThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{22}
+	return fileDescriptor_b3591c2d7d53bb31, []int{21}
 }
 
 func (m *SaveThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1606,7 +1524,7 @@ func (m *SaveThreadResponse) Reset()         { *m = SaveThreadResponse{} }
 func (m *SaveThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*SaveThreadResponse) ProtoMessage()    {}
 func (*SaveThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{23}
+	return fileDescriptor_b3591c2d7d53bb31, []int{22}
 }
 
 func (m *SaveThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -1641,7 +1559,7 @@ func (m *UndoSaveThreadRequest) Reset()         { *m = UndoSaveThreadRequest{} }
 func (m *UndoSaveThreadRequest) String() string { return proto.CompactTextString(m) }
 func (*UndoSaveThreadRequest) ProtoMessage()    {}
 func (*UndoSaveThreadRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{24}
+	return fileDescriptor_b3591c2d7d53bb31, []int{23}
 }
 
 func (m *UndoSaveThreadRequest) XXX_Unmarshal(b []byte) error {
@@ -1686,7 +1604,7 @@ func (m *UndoSaveThreadResponse) Reset()         { *m = UndoSaveThreadResponse{}
 func (m *UndoSaveThreadResponse) String() string { return proto.CompactTextString(m) }
 func (*UndoSaveThreadResponse) ProtoMessage()    {}
 func (*UndoSaveThreadResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_b3591c2d7d53bb31, []int{25}
+	return fileDescriptor_b3591c2d7d53bb31, []int{24}
 }
 
 func (m *UndoSaveThreadResponse) XXX_Unmarshal(b []byte) error {
@@ -1707,6 +1625,209 @@ func (m *UndoSaveThreadResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UndoSaveThreadResponse proto.InternalMessageInfo
 
+type GetActiveThreadsOverviewRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetActiveThreadsOverviewRequest) Reset()         { *m = GetActiveThreadsOverviewRequest{} }
+func (m *GetActiveThreadsOverviewRequest) String() string { return proto.CompactTextString(m) }
+func (*GetActiveThreadsOverviewRequest) ProtoMessage()    {}
+func (*GetActiveThreadsOverviewRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{25}
+}
+
+func (m *GetActiveThreadsOverviewRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetActiveThreadsOverviewRequest.Unmarshal(m, b)
+}
+func (m *GetActiveThreadsOverviewRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetActiveThreadsOverviewRequest.Marshal(b, m, deterministic)
+}
+func (m *GetActiveThreadsOverviewRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetActiveThreadsOverviewRequest.Merge(m, src)
+}
+func (m *GetActiveThreadsOverviewRequest) XXX_Size() int {
+	return xxx_messageInfo_GetActiveThreadsOverviewRequest.Size(m)
+}
+func (m *GetActiveThreadsOverviewRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetActiveThreadsOverviewRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetActiveThreadsOverviewRequest proto.InternalMessageInfo
+
+type GetThreadsOverviewRequest struct {
+	Ids                  []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetThreadsOverviewRequest) Reset()         { *m = GetThreadsOverviewRequest{} }
+func (m *GetThreadsOverviewRequest) String() string { return proto.CompactTextString(m) }
+func (*GetThreadsOverviewRequest) ProtoMessage()    {}
+func (*GetThreadsOverviewRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{26}
+}
+
+func (m *GetThreadsOverviewRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetThreadsOverviewRequest.Unmarshal(m, b)
+}
+func (m *GetThreadsOverviewRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetThreadsOverviewRequest.Marshal(b, m, deterministic)
+}
+func (m *GetThreadsOverviewRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetThreadsOverviewRequest.Merge(m, src)
+}
+func (m *GetThreadsOverviewRequest) XXX_Size() int {
+	return xxx_messageInfo_GetThreadsOverviewRequest.Size(m)
+}
+func (m *GetThreadsOverviewRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetThreadsOverviewRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetThreadsOverviewRequest proto.InternalMessageInfo
+
+func (m *GetThreadsOverviewRequest) GetIds() []string {
+	if m != nil {
+		return m.Ids
+	}
+	return nil
+}
+
+type ContentOverview struct {
+	Metadata             *metadata.Content `protobuf:"bytes,1,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Context              *context.Context  `protobuf:"bytes,2,opt,name=context,proto3" json:"context,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *ContentOverview) Reset()         { *m = ContentOverview{} }
+func (m *ContentOverview) String() string { return proto.CompactTextString(m) }
+func (*ContentOverview) ProtoMessage()    {}
+func (*ContentOverview) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{27}
+}
+
+func (m *ContentOverview) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentOverview.Unmarshal(m, b)
+}
+func (m *ContentOverview) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentOverview.Marshal(b, m, deterministic)
+}
+func (m *ContentOverview) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentOverview.Merge(m, src)
+}
+func (m *ContentOverview) XXX_Size() int {
+	return xxx_messageInfo_ContentOverview.Size(m)
+}
+func (m *ContentOverview) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentOverview.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentOverview proto.InternalMessageInfo
+
+func (m *ContentOverview) GetMetadata() *metadata.Content {
+	if m != nil {
+		return m.Metadata
+	}
+	return nil
+}
+
+func (m *ContentOverview) GetContext() *context.Context {
+	if m != nil {
+		return m.Context
+	}
+	return nil
+}
+
+type GetContentsByContextRequest struct {
+	Contents             []*ContentContext `protobuf:"bytes,1,rep,name=contents,proto3" json:"contents,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *GetContentsByContextRequest) Reset()         { *m = GetContentsByContextRequest{} }
+func (m *GetContentsByContextRequest) String() string { return proto.CompactTextString(m) }
+func (*GetContentsByContextRequest) ProtoMessage()    {}
+func (*GetContentsByContextRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{28}
+}
+
+func (m *GetContentsByContextRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetContentsByContextRequest.Unmarshal(m, b)
+}
+func (m *GetContentsByContextRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetContentsByContextRequest.Marshal(b, m, deterministic)
+}
+func (m *GetContentsByContextRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetContentsByContextRequest.Merge(m, src)
+}
+func (m *GetContentsByContextRequest) XXX_Size() int {
+	return xxx_messageInfo_GetContentsByContextRequest.Size(m)
+}
+func (m *GetContentsByContextRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetContentsByContextRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetContentsByContextRequest proto.InternalMessageInfo
+
+func (m *GetContentsByContextRequest) GetContents() []*ContentContext {
+	if m != nil {
+		return m.Contents
+	}
+	return nil
+}
+
+type ContentContext struct {
+	Key                  *context.Context `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Status               string           `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
+}
+
+func (m *ContentContext) Reset()         { *m = ContentContext{} }
+func (m *ContentContext) String() string { return proto.CompactTextString(m) }
+func (*ContentContext) ProtoMessage()    {}
+func (*ContentContext) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b3591c2d7d53bb31, []int{29}
+}
+
+func (m *ContentContext) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ContentContext.Unmarshal(m, b)
+}
+func (m *ContentContext) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ContentContext.Marshal(b, m, deterministic)
+}
+func (m *ContentContext) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ContentContext.Merge(m, src)
+}
+func (m *ContentContext) XXX_Size() int {
+	return xxx_messageInfo_ContentContext.Size(m)
+}
+func (m *ContentContext) XXX_DiscardUnknown() {
+	xxx_messageInfo_ContentContext.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ContentContext proto.InternalMessageInfo
+
+func (m *ContentContext) GetKey() *context.Context {
+	if m != nil {
+		return m.Key
+	}
+	return nil
+}
+
+func (m *ContentContext) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Content)(nil), "cheropatillapb.Content")
 	proto.RegisterType((*ContentAuthor)(nil), "cheropatillapb.ContentAuthor")
@@ -1718,10 +1839,9 @@ func init() {
 	proto.RegisterMapType((map[string]*IdList)(nil), "cheropatillapb.GeneralPattern.DiscardIdsEntry")
 	proto.RegisterType((*SavedPattern)(nil), "cheropatillapb.SavedPattern")
 	proto.RegisterMapType((map[string]*IdList)(nil), "cheropatillapb.SavedPattern.DiscardIdsEntry")
-	proto.RegisterType((*IdList)(nil), "cheropatillapb.IdList")
 	proto.RegisterType((*ActivityPattern)(nil), "cheropatillapb.ActivityPattern")
 	proto.RegisterMapType((map[string]*dataformat.Activity)(nil), "cheropatillapb.ActivityPattern.DiscardIdsEntry")
-	proto.RegisterType((*UserList)(nil), "cheropatillapb.UserList")
+	proto.RegisterType((*IdList)(nil), "cheropatillapb.IdList")
 	proto.RegisterType((*ContentRule)(nil), "cheropatillapb.ContentRule")
 	proto.RegisterType((*UpvoteRequest)(nil), "cheropatillapb.UpvoteRequest")
 	proto.RegisterType((*UndoUpvoteRequest)(nil), "cheropatillapb.UndoUpvoteRequest")
@@ -1737,6 +1857,11 @@ func init() {
 	proto.RegisterType((*SaveThreadResponse)(nil), "cheropatillapb.SaveThreadResponse")
 	proto.RegisterType((*UndoSaveThreadRequest)(nil), "cheropatillapb.UndoSaveThreadRequest")
 	proto.RegisterType((*UndoSaveThreadResponse)(nil), "cheropatillapb.UndoSaveThreadResponse")
+	proto.RegisterType((*GetActiveThreadsOverviewRequest)(nil), "cheropatillapb.GetActiveThreadsOverviewRequest")
+	proto.RegisterType((*GetThreadsOverviewRequest)(nil), "cheropatillapb.GetThreadsOverviewRequest")
+	proto.RegisterType((*ContentOverview)(nil), "cheropatillapb.ContentOverview")
+	proto.RegisterType((*GetContentsByContextRequest)(nil), "cheropatillapb.GetContentsByContextRequest")
+	proto.RegisterType((*ContentContext)(nil), "cheropatillapb.ContentContext")
 }
 
 func init() {
@@ -1744,94 +1869,103 @@ func init() {
 }
 
 var fileDescriptor_b3591c2d7d53bb31 = []byte{
-	// 1380 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x58, 0xdd, 0x6e, 0x1b, 0x45,
-	0x14, 0xf6, 0x6e, 0x1a, 0x27, 0x3e, 0x8e, 0xed, 0x64, 0x9a, 0x26, 0x66, 0x5b, 0x48, 0x58, 0xda,
-	0x52, 0x55, 0x65, 0xdd, 0xba, 0x54, 0x42, 0x14, 0x2e, 0x5a, 0x07, 0x92, 0x48, 0x2d, 0xb4, 0x9b,
-	0x5a, 0xfc, 0x0a, 0x6b, 0xbc, 0x3b, 0x8e, 0x57, 0x5d, 0x7b, 0xcd, 0xee, 0x6c, 0x48, 0xee, 0x78,
-	0x02, 0x24, 0x24, 0x78, 0x13, 0xde, 0x80, 0xf7, 0x40, 0x5c, 0x20, 0xb8, 0xe0, 0x92, 0x17, 0x40,
-	0xf3, 0xb3, 0xeb, 0xfd, 0xb3, 0x5d, 0x14, 0xf5, 0x82, 0xde, 0x79, 0xe6, 0xfc, 0xcc, 0xf9, 0xce,
-	0x39, 0xf3, 0xcd, 0x59, 0x43, 0xdd, 0x1a, 0x12, 0xdf, 0xc3, 0x13, 0xc7, 0x98, 0xf8, 0x1e, 0xf5,
-	0x90, 0x58, 0x4f, 0x30, 0x75, 0x5c, 0x17, 0x4f, 0xfa, 0xda, 0xce, 0xb1, 0xe7, 0x1d, 0xbb, 0xa4,
-	0xc5, 0xa5, 0xfd, 0x70, 0xd0, 0xa2, 0xce, 0x88, 0x04, 0x14, 0x8f, 0x26, 0xc2, 0x40, 0xdb, 0xb0,
-	0x31, 0xc5, 0xbd, 0x81, 0xe7, 0x8f, 0x30, 0x95, 0x5b, 0x35, 0xcb, 0x1b, 0x53, 0x72, 0x1a, 0x2d,
-	0xeb, 0x23, 0x42, 0x31, 0xd3, 0x12, 0x6b, 0xfd, 0x47, 0x05, 0x56, 0x3a, 0x4c, 0x63, 0x4c, 0xd1,
-	0x26, 0x2c, 0x53, 0x87, 0xba, 0xa4, 0xa9, 0xec, 0x2a, 0x37, 0x2a, 0xa6, 0x58, 0xa0, 0x26, 0xac,
-	0x58, 0x42, 0xa1, 0xa9, 0xf2, 0xfd, 0x68, 0x89, 0xb6, 0x61, 0x65, 0x40, 0x7b, 0x03, 0xc7, 0x25,
-	0xcd, 0x25, 0x2e, 0x29, 0x0f, 0xe8, 0xc7, 0x8e, 0x4b, 0xd0, 0x87, 0xb0, 0x36, 0x09, 0xfb, 0xae,
-	0x13, 0x0c, 0x7b, 0x36, 0xa6, 0xa4, 0x79, 0x61, 0x57, 0xb9, 0x51, 0x6d, 0x6b, 0x86, 0x08, 0xdf,
-	0x88, 0xc2, 0x37, 0x9e, 0x45, 0xe1, 0x9b, 0x55, 0xa9, 0xbf, 0x87, 0x29, 0xd1, 0x9f, 0x42, 0x4d,
-	0x86, 0xf4, 0x20, 0xa4, 0x43, 0xcf, 0x47, 0x75, 0x50, 0x1d, 0x5b, 0x46, 0xa5, 0x3a, 0x36, 0xd2,
-	0x60, 0x35, 0x0c, 0x88, 0x3f, 0xc6, 0x23, 0x22, 0x63, 0x8a, 0xd7, 0x0c, 0x04, 0x76, 0x1d, 0x1c,
-	0xc8, 0x90, 0xc4, 0x42, 0xff, 0x47, 0x81, 0x86, 0xf4, 0xf9, 0x58, 0x26, 0x20, 0xe7, 0xb5, 0x09,
-	0x2b, 0x01, 0xb1, 0xa8, 0xe3, 0x8d, 0x23, 0xa0, 0x72, 0x89, 0xae, 0x40, 0x65, 0x42, 0xfc, 0x11,
-	0x76, 0x9d, 0xf1, 0x73, 0xe9, 0x77, 0xba, 0xc1, 0xec, 0xc2, 0xc9, 0x89, 0x47, 0x49, 0xc0, 0x81,
-	0xd6, 0xcc, 0x68, 0xc9, 0x24, 0x3e, 0x99, 0xb8, 0x0e, 0x09, 0x9a, 0xcb, 0x42, 0x22, 0x97, 0xe8,
-	0x32, 0x54, 0x98, 0x8a, 0xdf, 0x73, 0xec, 0xa0, 0x59, 0xde, 0x5d, 0x62, 0x10, 0xf8, 0xc6, 0xa1,
-	0x1d, 0xa0, 0x1d, 0xa8, 0x0a, 0x3d, 0x21, 0x5e, 0xe1, 0x62, 0x90, 0x5b, 0x4c, 0xe1, 0x3a, 0x34,
-	0x18, 0xde, 0xa0, 0xf7, 0xdd, 0xd0, 0xeb, 0x05, 0xf8, 0x84, 0xd8, 0xcd, 0x55, 0xae, 0x54, 0xe3,
-	0xdb, 0x9f, 0x0d, 0xbd, 0x23, 0xb6, 0xa9, 0xff, 0xa2, 0x40, 0x55, 0xa2, 0xde, 0x63, 0x88, 0xef,
-	0x41, 0x19, 0xf3, 0x8c, 0x72, 0xd4, 0xd5, 0xf6, 0xeb, 0x46, 0xba, 0xc1, 0x8c, 0x54, 0xda, 0x4d,
-	0xa9, 0x8c, 0xee, 0xa4, 0x3b, 0xa0, 0xda, 0xde, 0x9e, 0x61, 0x37, 0x6d, 0x8d, 0xfb, 0xb0, 0x1a,
-	0x35, 0x1a, 0x4f, 0x58, 0xb5, 0xbd, 0x33, 0xc3, 0x26, 0x2a, 0x87, 0x19, 0x1b, 0xe8, 0x5f, 0x03,
-	0x7c, 0xe2, 0x51, 0x67, 0x70, 0xd6, 0x0d, 0x88, 0xcf, 0xba, 0x8c, 0xa1, 0xea, 0xc5, 0xb5, 0x2a,
-	0xb3, 0xe5, 0xa1, 0x8d, 0xee, 0xc1, 0xda, 0x98, 0xa9, 0x39, 0x16, 0x8e, 0x8b, 0x56, 0x6d, 0x6f,
-	0x18, 0xcc, 0x87, 0xbc, 0x02, 0xdc, 0x8d, 0x99, 0x52, 0xd3, 0x7f, 0x53, 0xa0, 0x2e, 0xcf, 0x7e,
-	0x82, 0x29, 0x25, 0xfe, 0x98, 0x01, 0x9c, 0x88, 0x9f, 0x4d, 0x65, 0x77, 0xe9, 0x46, 0xbd, 0xbd,
-	0x6d, 0xc4, 0xd7, 0x44, 0xaa, 0x1e, 0x51, 0x4c, 0xc3, 0xc0, 0x8c, 0xf4, 0x58, 0x8d, 0x6c, 0x27,
-	0xb0, 0xb0, 0x6f, 0xf3, 0x1a, 0xa9, 0xa2, 0x46, 0x72, 0x8b, 0xd5, 0xe8, 0x2e, 0x54, 0x65, 0xfb,
-	0xf4, 0x2c, 0x7a, 0x2a, 0x93, 0xb0, 0x6e, 0x44, 0xb7, 0xf1, 0x48, 0xc8, 0x0e, 0x4a, 0x26, 0x48,
-	0xb5, 0x0e, 0x3d, 0x45, 0xb7, 0x01, 0xe8, 0xd0, 0x27, 0xd8, 0xe6, 0x36, 0xe2, 0xda, 0x34, 0x62,
-	0x9b, 0x67, 0x5c, 0x74, 0x50, 0x32, 0x2b, 0x42, 0xa9, 0x43, 0x4f, 0x1f, 0x6e, 0x40, 0x43, 0xe6,
-	0xbc, 0x27, 0xd5, 0xf4, 0xbf, 0x15, 0xa8, 0xef, 0x93, 0x31, 0xf1, 0xb1, 0x7b, 0x0e, 0x80, 0x9f,
-	0xe6, 0x01, 0x56, 0xdb, 0x46, 0xb6, 0x88, 0xe9, 0x73, 0x8c, 0xbd, 0x18, 0xff, 0x47, 0x63, 0xea,
-	0x9f, 0x25, 0x13, 0xa2, 0x75, 0xa1, 0x91, 0x11, 0xa3, 0x75, 0x58, 0x7a, 0x4e, 0xce, 0x64, 0x59,
-	0xd9, 0x4f, 0x74, 0x0b, 0x96, 0x4f, 0xb0, 0x1b, 0x12, 0x59, 0xcc, 0xad, 0xec, 0x79, 0x87, 0xf6,
-	0x23, 0x27, 0xa0, 0xa6, 0x50, 0x7a, 0x5f, 0x7d, 0x4f, 0xd1, 0xbf, 0x57, 0x61, 0x8d, 0x77, 0xfb,
-	0x39, 0xb0, 0x3e, 0x2e, 0xc2, 0x7a, 0x2b, 0x7b, 0x76, 0xf2, 0x94, 0x79, 0x48, 0x93, 0x1d, 0xbb,
-	0x94, 0xec, 0xd8, 0x97, 0x95, 0x02, 0x0d, 0xca, 0x62, 0x93, 0x79, 0x63, 0x00, 0x14, 0xde, 0x8d,
-	0xec, 0xa7, 0xfe, 0xab, 0x0a, 0x8d, 0x07, 0x16, 0x75, 0x4e, 0x1c, 0x7a, 0x76, 0x8e, 0x0c, 0x3d,
-	0x29, 0xca, 0x50, 0x2b, 0x1b, 0x5a, 0xe6, 0xa0, 0xb9, 0x49, 0xba, 0x0d, 0xcb, 0x9c, 0xac, 0xe4,
-	0xcd, 0x68, 0x66, 0x7d, 0xb1, 0xbb, 0xcf, 0x30, 0x1d, 0x94, 0x4c, 0xa1, 0x88, 0x5e, 0x9b, 0xa6,
-	0x95, 0xdd, 0x8c, 0xca, 0x41, 0x29, 0x4e, 0xec, 0xd1, 0x8b, 0x24, 0xf6, 0x66, 0x3a, 0xb1, 0x9b,
-	0x49, 0xa2, 0x88, 0x22, 0x4f, 0xa4, 0xf5, 0x61, 0x45, 0xd2, 0xde, 0x29, 0xd5, 0xaf, 0xc0, 0x6a,
-	0x14, 0x4f, 0x41, 0x8e, 0x7f, 0x50, 0x63, 0x9a, 0x35, 0x43, 0x97, 0xa0, 0x16, 0x5c, 0xe0, 0xc4,
-	0x27, 0x48, 0xf6, 0xf2, 0x0c, 0xe2, 0x63, 0x8c, 0x6c, 0x72, 0xc5, 0xcc, 0xb5, 0x57, 0x17, 0x5f,
-	0x7b, 0xc6, 0x2e, 0x96, 0x37, 0x1a, 0xf1, 0x6b, 0x5f, 0xc0, 0x2e, 0x1d, 0x21, 0x63, 0xec, 0x22,
-	0xd5, 0x98, 0xd1, 0x07, 0x50, 0x0f, 0xc2, 0x7e, 0xd2, 0x4e, 0x30, 0xcc, 0xc5, 0x29, 0x2b, 0xc5,
-	0xe2, 0x83, 0x92, 0x59, 0x9b, 0x2a, 0x33, 0xeb, 0x2d, 0x28, 0x07, 0xbc, 0x2b, 0xf8, 0x5b, 0x56,
-	0x31, 0xe5, 0xaa, 0x88, 0x81, 0x7e, 0x57, 0xa0, 0xd6, 0xe5, 0x6f, 0xa0, 0x49, 0xbe, 0x0d, 0x49,
-	0x40, 0x67, 0x93, 0xf8, 0xff, 0x01, 0x7a, 0x11, 0xc4, 0x3f, 0x14, 0xd8, 0xe8, 0x8e, 0x6d, 0xef,
-	0x15, 0x87, 0xb9, 0x09, 0x28, 0x89, 0x32, 0x98, 0x78, 0xe3, 0x80, 0xe8, 0x3f, 0xab, 0xec, 0x09,
-	0xe5, 0x76, 0x11, 0xf2, 0xc4, 0x94, 0xa8, 0xcc, 0x9c, 0x12, 0xd5, 0xd4, 0x94, 0x38, 0x8b, 0x26,
-	0xcf, 0x39, 0x3e, 0x66, 0x72, 0xbd, 0xfc, 0xdf, 0x73, 0x5d, 0x7e, 0x91, 0x5c, 0x17, 0x65, 0xeb,
-	0x2f, 0x05, 0x36, 0xf7, 0x88, 0x4b, 0x28, 0x89, 0xe8, 0xe0, 0x55, 0xed, 0x8b, 0x6d, 0xb8, 0x94,
-	0x01, 0x2a, 0x5b, 0xe3, 0x27, 0x05, 0x2e, 0x76, 0x7c, 0x82, 0x29, 0x11, 0xc1, 0x47, 0x19, 0xb8,
-	0x93, 0xee, 0x8f, 0x17, 0x99, 0x21, 0xef, 0xa4, 0x27, 0x28, 0xb5, 0x78, 0x82, 0x4a, 0xcd, 0x4f,
-	0xb3, 0x5a, 0x4a, 0x7f, 0x17, 0x36, 0xd3, 0x51, 0x89, 0x70, 0xd3, 0x93, 0xbd, 0x92, 0x99, 0xec,
-	0xf5, 0xfb, 0xb0, 0xbe, 0x4f, 0x68, 0x1a, 0xc8, 0xdb, 0x50, 0x16, 0xc5, 0x90, 0x38, 0xb2, 0xd5,
-	0x32, 0xa5, 0x58, 0xef, 0xc3, 0xa5, 0x7d, 0x42, 0xa7, 0x79, 0x0d, 0xa6, 0xa9, 0x48, 0x55, 0x50,
-	0x29, 0xae, 0x60, 0xaa, 0x7e, 0x5b, 0x50, 0xf6, 0x06, 0x83, 0x80, 0x88, 0x01, 0xbc, 0x66, 0xca,
-	0x95, 0xde, 0x85, 0x0d, 0x36, 0x95, 0xa4, 0x23, 0x9c, 0xd9, 0x6c, 0xd3, 0xd0, 0xd5, 0xf9, 0xa1,
-	0x6f, 0x02, 0x4a, 0xba, 0x95, 0xa5, 0xfd, 0x02, 0x2e, 0x31, 0x2e, 0x78, 0x19, 0x07, 0x36, 0x61,
-	0x2b, 0xeb, 0x5a, 0x1c, 0xda, 0xfe, 0x73, 0x15, 0xd6, 0x3b, 0x7e, 0x68, 0x77, 0x12, 0xcd, 0x82,
-	0x9e, 0x42, 0xdd, 0x24, 0xd6, 0x99, 0xe5, 0x46, 0xed, 0x87, 0xde, 0x98, 0xd1, 0x4d, 0x72, 0x12,
-	0xd1, 0x66, 0x3d, 0xc2, 0xec, 0xbd, 0xd6, 0x4b, 0xb7, 0x95, 0x84, 0x4b, 0x39, 0xd2, 0xe6, 0x5d,
-	0xa6, 0x67, 0xdd, 0xc5, 0x2e, 0x8f, 0xa0, 0x21, 0x5d, 0x46, 0xd3, 0x05, 0xda, 0x59, 0x30, 0x31,
-	0x2d, 0x76, 0xfa, 0x18, 0xd6, 0xa4, 0x53, 0x3e, 0x8e, 0xa2, 0x2b, 0xf3, 0xa6, 0xd4, 0xc5, 0xee,
-	0xf6, 0xa1, 0x2c, 0xb8, 0x1d, 0xe5, 0xbe, 0x05, 0x53, 0x2f, 0x9b, 0xa6, 0x65, 0xc5, 0xd3, 0x2f,
-	0x34, 0xee, 0xa8, 0x0b, 0x30, 0x7d, 0x28, 0xd0, 0x9b, 0x39, 0x67, 0xd9, 0xa7, 0x52, 0xd3, 0xe7,
-	0xa9, 0xc8, 0x8e, 0x2b, 0xa1, 0x43, 0x58, 0x91, 0xf7, 0xa1, 0xa8, 0xc4, 0xc9, 0x17, 0x68, 0x61,
-	0x84, 0xdf, 0x40, 0x2d, 0x45, 0x59, 0xe8, 0x6a, 0xd6, 0xa0, 0x88, 0xba, 0xb5, 0x6b, 0x0b, 0xb4,
-	0xe2, 0x50, 0xbf, 0x82, 0xb5, 0x24, 0xc5, 0xa0, 0xb7, 0x72, 0xf1, 0xe6, 0x69, 0x51, 0xbb, 0x3a,
-	0x5f, 0x29, 0x76, 0xfe, 0x08, 0x2a, 0x31, 0x13, 0xa1, 0xdd, 0x7c, 0x67, 0xa6, 0x49, 0x4a, 0x9b,
-	0x37, 0x73, 0xea, 0x25, 0xf4, 0x39, 0xfb, 0x40, 0x4c, 0x52, 0x13, 0xba, 0x56, 0xe0, 0x32, 0x4f,
-	0x5d, 0x8b, 0xfb, 0xa9, 0x0b, 0x30, 0xbd, 0xc4, 0xf9, 0x36, 0xc8, 0x71, 0x47, 0xbe, 0x0d, 0x0a,
-	0x88, 0xa7, 0x84, 0x30, 0xd4, 0xd3, 0xfc, 0x90, 0x0f, 0xb8, 0x90, 0x9a, 0xb4, 0xeb, 0x8b, 0xd4,
-	0xa2, 0x23, 0x1e, 0xde, 0xfa, 0xf2, 0xe6, 0xb1, 0x43, 0x87, 0x61, 0xdf, 0xb0, 0xbc, 0x51, 0xcb,
-	0x0d, 0x9d, 0xe0, 0x38, 0x3c, 0x21, 0x2d, 0x61, 0xce, 0x26, 0x8e, 0x77, 0x8e, 0xbd, 0x56, 0xf4,
-	0xff, 0x5c, 0xbf, 0xcc, 0xb7, 0xee, 0xfe, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x84, 0xde, 0x89, 0x74,
-	0xb2, 0x13, 0x00, 0x00,
+	// 1530 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xdc, 0x18, 0x5d, 0x6f, 0xd3, 0x56,
+	0xbb, 0x76, 0x69, 0xda, 0x3e, 0x69, 0xd2, 0xf6, 0x10, 0x5a, 0xbf, 0x86, 0x97, 0x16, 0xbf, 0xc0,
+	0xcb, 0x18, 0x24, 0x10, 0x86, 0x34, 0xc1, 0x76, 0x01, 0xe9, 0x56, 0x2a, 0xc1, 0x00, 0x97, 0x68,
+	0x63, 0x5f, 0x91, 0x13, 0x9f, 0x34, 0x16, 0x4e, 0x9c, 0xd9, 0xc7, 0xa1, 0xb9, 0xdb, 0xa4, 0x5d,
+	0x4f, 0x9a, 0xb4, 0xfd, 0x93, 0xfd, 0x9e, 0x69, 0x17, 0x93, 0x76, 0xb1, 0xab, 0x69, 0x7f, 0x60,
+	0x3a, 0x1f, 0xfe, 0xb6, 0x13, 0xb6, 0x8a, 0x8b, 0x71, 0x95, 0x9c, 0xf3, 0x7c, 0x7f, 0x3f, 0xc7,
+	0x50, 0xed, 0x0d, 0xb0, 0xeb, 0x18, 0x63, 0xab, 0x3e, 0x76, 0x1d, 0xe2, 0x20, 0x7e, 0x1e, 0x1b,
+	0xc4, 0xb2, 0x6d, 0x63, 0xdc, 0x55, 0x77, 0x8e, 0x1c, 0xe7, 0xc8, 0xc6, 0x0d, 0x06, 0xed, 0xfa,
+	0xfd, 0x06, 0xb1, 0x86, 0xd8, 0x23, 0xc6, 0x70, 0xcc, 0x09, 0xd4, 0x4d, 0xd3, 0x20, 0x46, 0xa7,
+	0xef, 0xb8, 0x43, 0x83, 0x88, 0xab, 0x4a, 0xcf, 0x19, 0x11, 0x7c, 0x1c, 0x1c, 0xab, 0x43, 0x4c,
+	0x0c, 0x8a, 0xc5, 0xcf, 0xda, 0xf7, 0x12, 0x2c, 0xb7, 0x28, 0xc6, 0x88, 0xa0, 0x1a, 0x2c, 0x11,
+	0x8b, 0xd8, 0x58, 0x91, 0x76, 0xa5, 0x2b, 0xab, 0x3a, 0x3f, 0x20, 0x05, 0x96, 0x7b, 0x1c, 0x41,
+	0x91, 0xd9, 0x7d, 0x70, 0x44, 0xdb, 0xb0, 0xdc, 0x27, 0x9d, 0xbe, 0x65, 0x63, 0x65, 0x91, 0x41,
+	0x4a, 0x7d, 0xf2, 0xa1, 0x65, 0x63, 0xf4, 0x3e, 0xac, 0x8d, 0xfd, 0xae, 0x6d, 0x79, 0x83, 0x8e,
+	0x69, 0x10, 0xac, 0x9c, 0xda, 0x95, 0xae, 0x94, 0x9b, 0x6a, 0x9d, 0xab, 0x5f, 0x0f, 0xd4, 0xaf,
+	0x3f, 0x0b, 0xd4, 0xd7, 0xcb, 0x02, 0x7f, 0xcf, 0x20, 0x58, 0x7b, 0x0a, 0x15, 0xa1, 0xd2, 0x3d,
+	0x9f, 0x0c, 0x1c, 0x17, 0x55, 0x41, 0xb6, 0x4c, 0xa1, 0x95, 0x6c, 0x99, 0x48, 0x85, 0x15, 0xdf,
+	0xc3, 0xee, 0xc8, 0x18, 0x62, 0xa1, 0x53, 0x78, 0xa6, 0x46, 0x18, 0xb6, 0x65, 0x78, 0x42, 0x25,
+	0x7e, 0xd0, 0xfe, 0x94, 0x60, 0x5d, 0xf0, 0x7c, 0x24, 0x1c, 0x90, 0xe1, 0xaa, 0xc0, 0xb2, 0x87,
+	0x7b, 0xc4, 0x72, 0x46, 0x81, 0xa1, 0xe2, 0x88, 0xce, 0xc1, 0xea, 0x18, 0xbb, 0x43, 0xc3, 0xb6,
+	0x46, 0x2f, 0x04, 0xdf, 0xe8, 0x82, 0xd2, 0xf9, 0xe3, 0x89, 0x43, 0xb0, 0xc7, 0x0c, 0xad, 0xe8,
+	0xc1, 0x91, 0x42, 0x5c, 0x3c, 0xb6, 0x2d, 0xec, 0x29, 0x4b, 0x1c, 0x22, 0x8e, 0xe8, 0x2c, 0xac,
+	0x52, 0x14, 0xb7, 0x63, 0x99, 0x9e, 0x52, 0xda, 0x5d, 0xa4, 0x26, 0xb0, 0x8b, 0x03, 0xd3, 0x43,
+	0x3b, 0x50, 0xe6, 0x78, 0x1c, 0xbc, 0xcc, 0xc0, 0x20, 0xae, 0x28, 0xc2, 0x65, 0x58, 0xa7, 0xf6,
+	0x7a, 0x9d, 0x97, 0x03, 0xa7, 0xe3, 0x19, 0x13, 0x6c, 0x2a, 0x2b, 0x0c, 0xa9, 0xc2, 0xae, 0x3f,
+	0x1e, 0x38, 0x87, 0xf4, 0x52, 0xfb, 0x49, 0x82, 0xb2, 0xb0, 0x7a, 0x8f, 0x5a, 0x7c, 0x1b, 0x4a,
+	0x06, 0xf3, 0x28, 0xb3, 0xba, 0xdc, 0xfc, 0x6f, 0x3d, 0x99, 0x60, 0xf5, 0x84, 0xdb, 0x75, 0x81,
+	0x8c, 0x6e, 0x26, 0x33, 0xa0, 0xdc, 0xdc, 0x2e, 0xa0, 0x8b, 0x52, 0xe3, 0x2e, 0xac, 0x04, 0x89,
+	0xc6, 0x1c, 0x56, 0x6e, 0xee, 0x14, 0xd0, 0x04, 0xe1, 0xd0, 0x43, 0x02, 0xed, 0x73, 0x80, 0x8f,
+	0x1c, 0x62, 0xf5, 0xa7, 0x6d, 0x0f, 0xbb, 0x34, 0xcb, 0xa8, 0x55, 0x9d, 0x30, 0x56, 0x25, 0x7a,
+	0x3c, 0x30, 0xd1, 0x6d, 0x58, 0x1b, 0x51, 0x34, 0xab, 0x67, 0x84, 0x41, 0x2b, 0x37, 0x37, 0xeb,
+	0x94, 0x87, 0x28, 0x01, 0xc6, 0x46, 0x4f, 0xa0, 0x69, 0x3f, 0x4b, 0x50, 0x15, 0xb2, 0x9f, 0x18,
+	0x84, 0x60, 0x77, 0x44, 0x0d, 0x1c, 0xf3, 0xbf, 0x8a, 0xb4, 0xbb, 0x78, 0xa5, 0xda, 0xdc, 0xae,
+	0x87, 0x65, 0x22, 0x50, 0x0f, 0x89, 0x41, 0x7c, 0x4f, 0x0f, 0xf0, 0x68, 0x8c, 0x4c, 0xcb, 0xeb,
+	0x19, 0xae, 0xc9, 0x62, 0x24, 0xf3, 0x18, 0x89, 0x2b, 0x1a, 0xa3, 0x5b, 0x50, 0x16, 0xe9, 0xd3,
+	0xe9, 0x91, 0x63, 0xe1, 0x84, 0x8d, 0x7a, 0x50, 0x8d, 0x87, 0x1c, 0xf6, 0x60, 0x41, 0x07, 0x81,
+	0xd6, 0x22, 0xc7, 0xe8, 0x06, 0x00, 0x19, 0xb8, 0xd8, 0x30, 0x19, 0x0d, 0x2f, 0x9b, 0xf5, 0x90,
+	0xe6, 0x19, 0x03, 0x3d, 0x58, 0xd0, 0x57, 0x39, 0x52, 0x8b, 0x1c, 0xdf, 0xdf, 0x84, 0x75, 0xe1,
+	0xf3, 0x8e, 0x40, 0xd3, 0x7e, 0x97, 0xa0, 0xba, 0x8f, 0x47, 0xd8, 0x35, 0xec, 0x13, 0x18, 0xf8,
+	0x38, 0x6b, 0x60, 0xb9, 0x59, 0x4f, 0x07, 0x31, 0x29, 0xa7, 0xbe, 0x17, 0xda, 0xff, 0xc1, 0x88,
+	0xb8, 0xd3, 0xb8, 0x43, 0xd4, 0x36, 0xac, 0xa7, 0xc0, 0x68, 0x03, 0x16, 0x5f, 0xe0, 0xa9, 0x08,
+	0x2b, 0xfd, 0x8b, 0xae, 0xc1, 0xd2, 0xc4, 0xb0, 0x7d, 0x2c, 0x82, 0xb9, 0x95, 0x96, 0x77, 0x60,
+	0x3e, 0xb4, 0x3c, 0xa2, 0x73, 0xa4, 0x3b, 0xf2, 0xbb, 0x92, 0xf6, 0xb5, 0x0c, 0x6b, 0x2c, 0xdb,
+	0x4f, 0x60, 0xeb, 0xa3, 0x3c, 0x5b, 0xaf, 0xa5, 0x65, 0xc7, 0xa5, 0xcc, 0xb2, 0x34, 0x9e, 0xb1,
+	0x8b, 0xf1, 0x8c, 0x7d, 0x5d, 0x2e, 0xf8, 0x46, 0x86, 0xf5, 0x7b, 0x3d, 0x62, 0x4d, 0x2c, 0x32,
+	0x3d, 0x81, 0x17, 0x9e, 0xe4, 0x79, 0xa1, 0x91, 0x16, 0x9f, 0x12, 0x34, 0xd3, 0x11, 0x35, 0x58,
+	0x62, 0x0d, 0x49, 0x59, 0x64, 0xe5, 0xc1, 0x0f, 0xea, 0xe1, 0xab, 0x78, 0xe1, 0x6a, 0xd2, 0x0b,
+	0xb5, 0x78, 0x55, 0x07, 0x2a, 0xc4, 0x7d, 0xa0, 0x42, 0x89, 0x3b, 0x86, 0xf2, 0xa2, 0xea, 0x4b,
+	0x4c, 0x24, 0xfd, 0xab, 0x7d, 0x27, 0x87, 0x6d, 0x50, 0xf7, 0x6d, 0x8c, 0x1a, 0x70, 0x8a, 0x35,
+	0x26, 0xde, 0x04, 0xcf, 0x16, 0x34, 0x26, 0xda, 0x31, 0x75, 0x86, 0x98, 0x2a, 0x4b, 0x79, 0x7e,
+	0x59, 0xd2, 0xea, 0xef, 0x39, 0xc3, 0x21, 0x2b, 0xcb, 0x9c, 0xea, 0x6f, 0x71, 0x18, 0xad, 0x7e,
+	0x81, 0x46, 0x89, 0xde, 0x83, 0xaa, 0xe7, 0x77, 0xe3, 0x74, 0xbc, 0x03, 0x9c, 0x8e, 0xba, 0x46,
+	0x08, 0x7e, 0xb0, 0xa0, 0x57, 0x22, 0x64, 0x4a, 0xbd, 0x05, 0x25, 0x8f, 0x45, 0x94, 0xcd, 0x9a,
+	0x55, 0x5d, 0x9c, 0xf2, 0x3a, 0xc4, 0x2f, 0x12, 0x54, 0xda, 0x6c, 0x46, 0xe9, 0xf8, 0x2b, 0x1f,
+	0x7b, 0xa4, 0xb8, 0xc9, 0xfe, 0x1b, 0x4c, 0xcf, 0x33, 0xf1, 0x57, 0x09, 0x36, 0xdb, 0x23, 0xd3,
+	0x79, 0xc3, 0xcd, 0xac, 0x01, 0x8a, 0x5b, 0xe9, 0x8d, 0x9d, 0x91, 0x87, 0xb5, 0x1f, 0x65, 0x3a,
+	0xe2, 0x18, 0x5d, 0x60, 0x79, 0x6c, 0x8b, 0x93, 0x0a, 0xb7, 0x38, 0x39, 0xb1, 0xc5, 0x15, 0xb5,
+	0xb1, 0x13, 0xae, 0x77, 0x29, 0x5f, 0x2f, 0xfd, 0x7d, 0x5f, 0x97, 0x5e, 0xc5, 0xd7, 0x79, 0xde,
+	0xfa, 0x4d, 0x82, 0xda, 0x1e, 0xb6, 0x31, 0xc1, 0x41, 0x3b, 0x78, 0x53, 0xf3, 0x62, 0x1b, 0xce,
+	0xa4, 0x0c, 0x15, 0xa9, 0xf1, 0x83, 0x04, 0xa7, 0x5b, 0x2e, 0x36, 0x08, 0xe6, 0xca, 0x07, 0x1e,
+	0xb8, 0x99, 0xcc, 0x8f, 0x57, 0xd9, 0xf1, 0x6e, 0x26, 0x37, 0x1c, 0x39, 0x7f, 0xc3, 0x49, 0xec,
+	0x37, 0x45, 0x29, 0xa5, 0xbd, 0x03, 0xb5, 0xa4, 0x56, 0x5c, 0xdd, 0xe4, 0xe6, 0x2d, 0xa5, 0x36,
+	0x6f, 0xed, 0x2e, 0x6c, 0xec, 0x63, 0x92, 0x34, 0xe4, 0xff, 0x50, 0xe2, 0xc1, 0x10, 0x76, 0xa4,
+	0xa3, 0xa5, 0x0b, 0xb0, 0xd6, 0x85, 0x33, 0xfb, 0x98, 0x44, 0x7e, 0xf5, 0x22, 0x57, 0x24, 0x22,
+	0x28, 0xe5, 0x47, 0x30, 0x11, 0xbf, 0x2d, 0x28, 0x39, 0xfd, 0xbe, 0x87, 0xf9, 0x82, 0x5c, 0xd1,
+	0xc5, 0x49, 0x6b, 0xc3, 0x26, 0xdd, 0x1a, 0x92, 0x1a, 0x16, 0x26, 0x5b, 0xa4, 0xba, 0x3c, 0x5b,
+	0xf5, 0x1a, 0xa0, 0x38, 0x5b, 0x11, 0xda, 0xe7, 0x70, 0x86, 0xf6, 0x82, 0xd7, 0x21, 0x50, 0x81,
+	0xad, 0x34, 0x6b, 0x21, 0xf4, 0x02, 0xec, 0xec, 0x63, 0xc2, 0x26, 0xb2, 0x00, 0x79, 0x8f, 0x27,
+	0xd8, 0x9d, 0x58, 0xf8, 0xa5, 0x10, 0xaf, 0x5d, 0x87, 0xff, 0x84, 0x51, 0x4a, 0x03, 0x73, 0xa6,
+	0xb5, 0x1d, 0xbe, 0xd4, 0x02, 0x5c, 0x74, 0x3d, 0xf6, 0x9a, 0x90, 0xc4, 0x96, 0x9f, 0xde, 0x66,
+	0xa2, 0xf7, 0x03, 0xba, 0x2a, 0x72, 0xf9, 0x98, 0x64, 0x92, 0xb2, 0xc5, 0x7f, 0xf5, 0x00, 0x41,
+	0x7b, 0x0e, 0x67, 0xf7, 0x31, 0x11, 0x3c, 0xbc, 0xfb, 0xd3, 0x00, 0x41, 0xa8, 0x77, 0x07, 0x56,
+	0x44, 0xba, 0x73, 0x1d, 0xcb, 0xcd, 0xf3, 0x05, 0x75, 0x11, 0x10, 0x86, 0xf8, 0xda, 0xc3, 0xf0,
+	0x9d, 0x21, 0x60, 0x48, 0x8b, 0xd6, 0x9c, 0x3c, 0xa5, 0xd8, 0xe2, 0x13, 0x8d, 0x71, 0x39, 0x3e,
+	0xc6, 0x9b, 0x7f, 0xac, 0xc2, 0x46, 0xcb, 0xf5, 0xcd, 0x56, 0x4c, 0x3a, 0x7a, 0x0a, 0x55, 0x1d,
+	0xf7, 0xa6, 0x3d, 0x3b, 0xa8, 0x73, 0x54, 0xa4, 0x9e, 0x58, 0xd7, 0xd4, 0xa2, 0x6d, 0x87, 0x2e,
+	0x46, 0xda, 0xc2, 0x0d, 0x09, 0x59, 0xa0, 0x14, 0x05, 0x14, 0x35, 0xb2, 0xeb, 0xff, 0xcc, 0xd0,
+	0xab, 0x4a, 0x14, 0x26, 0xf1, 0x52, 0x10, 0xe2, 0x98, 0xa8, 0x2f, 0x00, 0x65, 0x13, 0x03, 0xbd,
+	0x95, 0x23, 0xe4, 0x1f, 0xb1, 0x7f, 0x02, 0xa7, 0x03, 0xfd, 0x2c, 0x32, 0x0d, 0xf9, 0xe7, 0xae,
+	0x92, 0x6a, 0xd1, 0xf3, 0x34, 0x20, 0x63, 0x1c, 0x4d, 0xa8, 0xe5, 0x25, 0x0b, 0x7a, 0x3b, 0x47,
+	0xe5, 0xa2, 0x94, 0x9a, 0x1f, 0x81, 0x7d, 0x28, 0xf1, 0x79, 0x8e, 0x32, 0xef, 0xf3, 0xc4, 0x36,
+	0xa3, 0xaa, 0x69, 0x70, 0xf4, 0x6a, 0x66, 0x8c, 0xda, 0x00, 0xd1, 0x72, 0x80, 0x2e, 0x64, 0x98,
+	0xa5, 0xd7, 0x23, 0x55, 0x9b, 0x85, 0x22, 0x0a, 0x7e, 0x01, 0x1d, 0xc0, 0xb2, 0xe8, 0x81, 0x79,
+	0xd9, 0x16, 0xdf, 0x3a, 0xe6, 0x6a, 0xf8, 0x25, 0x54, 0x12, 0x63, 0x0a, 0x5d, 0x4c, 0x13, 0xe4,
+	0x8d, 0x6b, 0xf5, 0xd2, 0x1c, 0xac, 0x50, 0xd5, 0xcf, 0x60, 0x2d, 0x3e, 0x56, 0xd0, 0xff, 0x32,
+	0xfa, 0x66, 0x47, 0xa1, 0x7a, 0x71, 0x36, 0x52, 0xc8, 0xfc, 0x21, 0xac, 0x86, 0xa9, 0x89, 0x76,
+	0x0b, 0xb3, 0x76, 0x5e, 0xdc, 0xe9, 0x3b, 0x43, 0x5b, 0x40, 0x9f, 0xd0, 0x47, 0x7b, 0x7c, 0x1c,
+	0xa1, 0x4b, 0x39, 0x2c, 0xb3, 0xe3, 0x6a, 0x7e, 0x3e, 0xb5, 0x01, 0xa2, 0xc6, 0x9d, 0x4d, 0x83,
+	0xcc, 0xbc, 0xc8, 0xa6, 0x41, 0x4e, 0xdf, 0x5f, 0x40, 0x06, 0x54, 0x93, 0x33, 0x21, 0xab, 0x70,
+	0xee, 0x38, 0x52, 0x2f, 0xcf, 0x43, 0x0b, 0x44, 0x34, 0xbf, 0xa5, 0x0f, 0x37, 0xd7, 0x37, 0x45,
+	0x71, 0xc7, 0xda, 0x5d, 0x70, 0x73, 0x7e, 0xf6, 0x07, 0x89, 0xf9, 0xce, 0x39, 0x84, 0x75, 0xc1,
+	0x32, 0x68, 0x05, 0x68, 0x67, 0xce, 0x93, 0x77, 0x3e, 0xd3, 0x47, 0xb0, 0x26, 0x98, 0xb2, 0x6f,
+	0x06, 0xe8, 0xdc, 0xac, 0x4f, 0x09, 0x73, 0xd9, 0xdd, 0xbf, 0xf6, 0xe9, 0xd5, 0x23, 0x8b, 0x0c,
+	0xfc, 0x6e, 0xbd, 0xe7, 0x0c, 0x1b, 0xb6, 0x6f, 0x79, 0x47, 0xfe, 0x04, 0x37, 0x38, 0x15, 0x5d,
+	0xb6, 0xaf, 0x1f, 0x39, 0x8d, 0xe0, 0xd3, 0x71, 0xb7, 0xc4, 0xae, 0x6e, 0xfd, 0x15, 0x00, 0x00,
+	0xff, 0xff, 0xa6, 0xff, 0x1f, 0x4c, 0x4d, 0x16, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1857,12 +1991,14 @@ type CrudCheropatillaClient interface {
 	// request with a nil ContentContext or a codes.Internal error in case of
 	// a database querying or network issue.
 	RecycleContent(ctx context1.Context, in *ContentPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleContentClient, error)
-	// Get new feed of threads in general (from multiple sections)
-	RecycleGeneral(ctx context1.Context, in *GeneralPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleGeneralClient, error)
-	// Get new activity from either multiple users or a single user.
-	RecycleActivity(ctx context1.Context, in *ActivityPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleActivityClient, error)
-	// Get new feed of saved threads of a user
-	RecycleSaved(ctx context1.Context, in *SavedPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleSavedClient, error)
+	// Get metadata of active threads.
+	GetActiveThreadsOverview(ctx context1.Context, in *GetActiveThreadsOverviewRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetActiveThreadsOverviewClient, error)
+	// Get metadata of threads along with the section information.
+	GetThreadsOverview(ctx context1.Context, in *GetThreadsOverviewRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetThreadsOverviewClient, error)
+	// Get metadata of contents along with their context.
+	GetActivityOverview(ctx context1.Context, in *dataformat.Activity, opts ...grpc.CallOption) (CrudCheropatilla_GetActivityOverviewClient, error)
+	// Get data of contents by their context; either thread, comment or subcomment.
+	GetContentsByContext(ctx context1.Context, in *GetContentsByContextRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetContentsByContextClient, error)
 	// Post upvote on thread, comment or subcomment
 	Upvote(ctx context1.Context, in *UpvoteRequest, opts ...grpc.CallOption) (CrudCheropatilla_UpvoteClient, error)
 	// Undo upvote on a thread, comment or subcomment
@@ -1925,12 +2061,12 @@ func (x *crudCheropatillaRecycleContentClient) Recv() (*ContentRule, error) {
 	return m, nil
 }
 
-func (c *crudCheropatillaClient) RecycleGeneral(ctx context1.Context, in *GeneralPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleGeneralClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[1], "/cheropatillapb.CrudCheropatilla/RecycleGeneral", opts...)
+func (c *crudCheropatillaClient) GetActiveThreadsOverview(ctx context1.Context, in *GetActiveThreadsOverviewRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetActiveThreadsOverviewClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[1], "/cheropatillapb.CrudCheropatilla/GetActiveThreadsOverview", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &crudCheropatillaRecycleGeneralClient{stream}
+	x := &crudCheropatillaGetActiveThreadsOverviewClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1940,29 +2076,29 @@ func (c *crudCheropatillaClient) RecycleGeneral(ctx context1.Context, in *Genera
 	return x, nil
 }
 
-type CrudCheropatilla_RecycleGeneralClient interface {
-	Recv() (*ContentRule, error)
+type CrudCheropatilla_GetActiveThreadsOverviewClient interface {
+	Recv() (*metadata.GeneralContent, error)
 	grpc.ClientStream
 }
 
-type crudCheropatillaRecycleGeneralClient struct {
+type crudCheropatillaGetActiveThreadsOverviewClient struct {
 	grpc.ClientStream
 }
 
-func (x *crudCheropatillaRecycleGeneralClient) Recv() (*ContentRule, error) {
-	m := new(ContentRule)
+func (x *crudCheropatillaGetActiveThreadsOverviewClient) Recv() (*metadata.GeneralContent, error) {
+	m := new(metadata.GeneralContent)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *crudCheropatillaClient) RecycleActivity(ctx context1.Context, in *ActivityPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleActivityClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[2], "/cheropatillapb.CrudCheropatilla/RecycleActivity", opts...)
+func (c *crudCheropatillaClient) GetThreadsOverview(ctx context1.Context, in *GetThreadsOverviewRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetThreadsOverviewClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[2], "/cheropatillapb.CrudCheropatilla/GetThreadsOverview", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &crudCheropatillaRecycleActivityClient{stream}
+	x := &crudCheropatillaGetThreadsOverviewClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -1972,29 +2108,29 @@ func (c *crudCheropatillaClient) RecycleActivity(ctx context1.Context, in *Activ
 	return x, nil
 }
 
-type CrudCheropatilla_RecycleActivityClient interface {
-	Recv() (*ContentRule, error)
+type CrudCheropatilla_GetThreadsOverviewClient interface {
+	Recv() (*metadata.GeneralContent, error)
 	grpc.ClientStream
 }
 
-type crudCheropatillaRecycleActivityClient struct {
+type crudCheropatillaGetThreadsOverviewClient struct {
 	grpc.ClientStream
 }
 
-func (x *crudCheropatillaRecycleActivityClient) Recv() (*ContentRule, error) {
-	m := new(ContentRule)
+func (x *crudCheropatillaGetThreadsOverviewClient) Recv() (*metadata.GeneralContent, error) {
+	m := new(metadata.GeneralContent)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *crudCheropatillaClient) RecycleSaved(ctx context1.Context, in *SavedPattern, opts ...grpc.CallOption) (CrudCheropatilla_RecycleSavedClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[3], "/cheropatillapb.CrudCheropatilla/RecycleSaved", opts...)
+func (c *crudCheropatillaClient) GetActivityOverview(ctx context1.Context, in *dataformat.Activity, opts ...grpc.CallOption) (CrudCheropatilla_GetActivityOverviewClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[3], "/cheropatillapb.CrudCheropatilla/GetActivityOverview", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &crudCheropatillaRecycleSavedClient{stream}
+	x := &crudCheropatillaGetActivityOverviewClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -2004,16 +2140,48 @@ func (c *crudCheropatillaClient) RecycleSaved(ctx context1.Context, in *SavedPat
 	return x, nil
 }
 
-type CrudCheropatilla_RecycleSavedClient interface {
+type CrudCheropatilla_GetActivityOverviewClient interface {
+	Recv() (*ContentOverview, error)
+	grpc.ClientStream
+}
+
+type crudCheropatillaGetActivityOverviewClient struct {
+	grpc.ClientStream
+}
+
+func (x *crudCheropatillaGetActivityOverviewClient) Recv() (*ContentOverview, error) {
+	m := new(ContentOverview)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *crudCheropatillaClient) GetContentsByContext(ctx context1.Context, in *GetContentsByContextRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetContentsByContextClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[4], "/cheropatillapb.CrudCheropatilla/GetContentsByContext", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &crudCheropatillaGetContentsByContextClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CrudCheropatilla_GetContentsByContextClient interface {
 	Recv() (*ContentRule, error)
 	grpc.ClientStream
 }
 
-type crudCheropatillaRecycleSavedClient struct {
+type crudCheropatillaGetContentsByContextClient struct {
 	grpc.ClientStream
 }
 
-func (x *crudCheropatillaRecycleSavedClient) Recv() (*ContentRule, error) {
+func (x *crudCheropatillaGetContentsByContextClient) Recv() (*ContentRule, error) {
 	m := new(ContentRule)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -2022,7 +2190,7 @@ func (x *crudCheropatillaRecycleSavedClient) Recv() (*ContentRule, error) {
 }
 
 func (c *crudCheropatillaClient) Upvote(ctx context1.Context, in *UpvoteRequest, opts ...grpc.CallOption) (CrudCheropatilla_UpvoteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[4], "/cheropatillapb.CrudCheropatilla/Upvote", opts...)
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[5], "/cheropatillapb.CrudCheropatilla/Upvote", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2063,7 +2231,7 @@ func (c *crudCheropatillaClient) UndoUpvote(ctx context1.Context, in *UndoUpvote
 }
 
 func (c *crudCheropatillaClient) Comment(ctx context1.Context, in *CommentRequest, opts ...grpc.CallOption) (CrudCheropatilla_CommentClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[5], "/cheropatillapb.CrudCheropatilla/Comment", opts...)
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[6], "/cheropatillapb.CrudCheropatilla/Comment", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2122,7 +2290,7 @@ func (c *crudCheropatillaClient) GetThread(ctx context1.Context, in *GetThreadRe
 }
 
 func (c *crudCheropatillaClient) GetSubcomments(ctx context1.Context, in *GetSubcommentsRequest, opts ...grpc.CallOption) (CrudCheropatilla_GetSubcommentsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[6], "/cheropatillapb.CrudCheropatilla/GetSubcomments", opts...)
+	stream, err := c.cc.NewStream(ctx, &_CrudCheropatilla_serviceDesc.Streams[7], "/cheropatillapb.CrudCheropatilla/GetSubcomments", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2184,12 +2352,14 @@ type CrudCheropatillaServer interface {
 	// request with a nil ContentContext or a codes.Internal error in case of
 	// a database querying or network issue.
 	RecycleContent(*ContentPattern, CrudCheropatilla_RecycleContentServer) error
-	// Get new feed of threads in general (from multiple sections)
-	RecycleGeneral(*GeneralPattern, CrudCheropatilla_RecycleGeneralServer) error
-	// Get new activity from either multiple users or a single user.
-	RecycleActivity(*ActivityPattern, CrudCheropatilla_RecycleActivityServer) error
-	// Get new feed of saved threads of a user
-	RecycleSaved(*SavedPattern, CrudCheropatilla_RecycleSavedServer) error
+	// Get metadata of active threads.
+	GetActiveThreadsOverview(*GetActiveThreadsOverviewRequest, CrudCheropatilla_GetActiveThreadsOverviewServer) error
+	// Get metadata of threads along with the section information.
+	GetThreadsOverview(*GetThreadsOverviewRequest, CrudCheropatilla_GetThreadsOverviewServer) error
+	// Get metadata of contents along with their context.
+	GetActivityOverview(*dataformat.Activity, CrudCheropatilla_GetActivityOverviewServer) error
+	// Get data of contents by their context; either thread, comment or subcomment.
+	GetContentsByContext(*GetContentsByContextRequest, CrudCheropatilla_GetContentsByContextServer) error
 	// Post upvote on thread, comment or subcomment
 	Upvote(*UpvoteRequest, CrudCheropatilla_UpvoteServer) error
 	// Undo upvote on a thread, comment or subcomment
@@ -2219,14 +2389,17 @@ type UnimplementedCrudCheropatillaServer struct {
 func (*UnimplementedCrudCheropatillaServer) RecycleContent(req *ContentPattern, srv CrudCheropatilla_RecycleContentServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecycleContent not implemented")
 }
-func (*UnimplementedCrudCheropatillaServer) RecycleGeneral(req *GeneralPattern, srv CrudCheropatilla_RecycleGeneralServer) error {
-	return status.Errorf(codes.Unimplemented, "method RecycleGeneral not implemented")
+func (*UnimplementedCrudCheropatillaServer) GetActiveThreadsOverview(req *GetActiveThreadsOverviewRequest, srv CrudCheropatilla_GetActiveThreadsOverviewServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetActiveThreadsOverview not implemented")
 }
-func (*UnimplementedCrudCheropatillaServer) RecycleActivity(req *ActivityPattern, srv CrudCheropatilla_RecycleActivityServer) error {
-	return status.Errorf(codes.Unimplemented, "method RecycleActivity not implemented")
+func (*UnimplementedCrudCheropatillaServer) GetThreadsOverview(req *GetThreadsOverviewRequest, srv CrudCheropatilla_GetThreadsOverviewServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetThreadsOverview not implemented")
 }
-func (*UnimplementedCrudCheropatillaServer) RecycleSaved(req *SavedPattern, srv CrudCheropatilla_RecycleSavedServer) error {
-	return status.Errorf(codes.Unimplemented, "method RecycleSaved not implemented")
+func (*UnimplementedCrudCheropatillaServer) GetActivityOverview(req *dataformat.Activity, srv CrudCheropatilla_GetActivityOverviewServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetActivityOverview not implemented")
+}
+func (*UnimplementedCrudCheropatillaServer) GetContentsByContext(req *GetContentsByContextRequest, srv CrudCheropatilla_GetContentsByContextServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetContentsByContext not implemented")
 }
 func (*UnimplementedCrudCheropatillaServer) Upvote(req *UpvoteRequest, srv CrudCheropatilla_UpvoteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Upvote not implemented")
@@ -2281,66 +2454,87 @@ func (x *crudCheropatillaRecycleContentServer) Send(m *ContentRule) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _CrudCheropatilla_RecycleGeneral_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GeneralPattern)
+func _CrudCheropatilla_GetActiveThreadsOverview_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetActiveThreadsOverviewRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(CrudCheropatillaServer).RecycleGeneral(m, &crudCheropatillaRecycleGeneralServer{stream})
+	return srv.(CrudCheropatillaServer).GetActiveThreadsOverview(m, &crudCheropatillaGetActiveThreadsOverviewServer{stream})
 }
 
-type CrudCheropatilla_RecycleGeneralServer interface {
-	Send(*ContentRule) error
+type CrudCheropatilla_GetActiveThreadsOverviewServer interface {
+	Send(*metadata.GeneralContent) error
 	grpc.ServerStream
 }
 
-type crudCheropatillaRecycleGeneralServer struct {
+type crudCheropatillaGetActiveThreadsOverviewServer struct {
 	grpc.ServerStream
 }
 
-func (x *crudCheropatillaRecycleGeneralServer) Send(m *ContentRule) error {
+func (x *crudCheropatillaGetActiveThreadsOverviewServer) Send(m *metadata.GeneralContent) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _CrudCheropatilla_RecycleActivity_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ActivityPattern)
+func _CrudCheropatilla_GetThreadsOverview_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetThreadsOverviewRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(CrudCheropatillaServer).RecycleActivity(m, &crudCheropatillaRecycleActivityServer{stream})
+	return srv.(CrudCheropatillaServer).GetThreadsOverview(m, &crudCheropatillaGetThreadsOverviewServer{stream})
 }
 
-type CrudCheropatilla_RecycleActivityServer interface {
-	Send(*ContentRule) error
+type CrudCheropatilla_GetThreadsOverviewServer interface {
+	Send(*metadata.GeneralContent) error
 	grpc.ServerStream
 }
 
-type crudCheropatillaRecycleActivityServer struct {
+type crudCheropatillaGetThreadsOverviewServer struct {
 	grpc.ServerStream
 }
 
-func (x *crudCheropatillaRecycleActivityServer) Send(m *ContentRule) error {
+func (x *crudCheropatillaGetThreadsOverviewServer) Send(m *metadata.GeneralContent) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _CrudCheropatilla_RecycleSaved_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(SavedPattern)
+func _CrudCheropatilla_GetActivityOverview_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(dataformat.Activity)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(CrudCheropatillaServer).RecycleSaved(m, &crudCheropatillaRecycleSavedServer{stream})
+	return srv.(CrudCheropatillaServer).GetActivityOverview(m, &crudCheropatillaGetActivityOverviewServer{stream})
 }
 
-type CrudCheropatilla_RecycleSavedServer interface {
+type CrudCheropatilla_GetActivityOverviewServer interface {
+	Send(*ContentOverview) error
+	grpc.ServerStream
+}
+
+type crudCheropatillaGetActivityOverviewServer struct {
+	grpc.ServerStream
+}
+
+func (x *crudCheropatillaGetActivityOverviewServer) Send(m *ContentOverview) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _CrudCheropatilla_GetContentsByContext_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetContentsByContextRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CrudCheropatillaServer).GetContentsByContext(m, &crudCheropatillaGetContentsByContextServer{stream})
+}
+
+type CrudCheropatilla_GetContentsByContextServer interface {
 	Send(*ContentRule) error
 	grpc.ServerStream
 }
 
-type crudCheropatillaRecycleSavedServer struct {
+type crudCheropatillaGetContentsByContextServer struct {
 	grpc.ServerStream
 }
 
-func (x *crudCheropatillaRecycleSavedServer) Send(m *ContentRule) error {
+func (x *crudCheropatillaGetContentsByContextServer) Send(m *ContentRule) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -2551,18 +2745,23 @@ var _CrudCheropatilla_serviceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "RecycleGeneral",
-			Handler:       _CrudCheropatilla_RecycleGeneral_Handler,
+			StreamName:    "GetActiveThreadsOverview",
+			Handler:       _CrudCheropatilla_GetActiveThreadsOverview_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "RecycleActivity",
-			Handler:       _CrudCheropatilla_RecycleActivity_Handler,
+			StreamName:    "GetThreadsOverview",
+			Handler:       _CrudCheropatilla_GetThreadsOverview_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "RecycleSaved",
-			Handler:       _CrudCheropatilla_RecycleSaved_Handler,
+			StreamName:    "GetActivityOverview",
+			Handler:       _CrudCheropatilla_GetActivityOverview_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetContentsByContext",
+			Handler:       _CrudCheropatilla_GetContentsByContext_Handler,
 			ServerStreams: true,
 		},
 		{
@@ -2578,6 +2777,237 @@ var _CrudCheropatilla_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetSubcomments",
 			Handler:       _CrudCheropatilla_GetSubcomments_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "cheroapi.proto",
+}
+
+// CrudGeneralClient is the client API for CrudGeneral service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
+type CrudGeneralClient interface {
+	// Get new feed of threads in general (from multiple sections)
+	RecycleGeneral(ctx context1.Context, in *GeneralPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleGeneralClient, error)
+	// Get new activity from either multiple users or a single user.
+	RecycleActivity(ctx context1.Context, in *ActivityPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleActivityClient, error)
+	// Get new feed of saved threads of a user
+	RecycleSaved(ctx context1.Context, in *SavedPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleSavedClient, error)
+}
+
+type crudGeneralClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewCrudGeneralClient(cc grpc.ClientConnInterface) CrudGeneralClient {
+	return &crudGeneralClient{cc}
+}
+
+func (c *crudGeneralClient) RecycleGeneral(ctx context1.Context, in *GeneralPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleGeneralClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudGeneral_serviceDesc.Streams[0], "/cheropatillapb.CrudGeneral/RecycleGeneral", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &crudGeneralRecycleGeneralClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CrudGeneral_RecycleGeneralClient interface {
+	Recv() (*ContentRule, error)
+	grpc.ClientStream
+}
+
+type crudGeneralRecycleGeneralClient struct {
+	grpc.ClientStream
+}
+
+func (x *crudGeneralRecycleGeneralClient) Recv() (*ContentRule, error) {
+	m := new(ContentRule)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *crudGeneralClient) RecycleActivity(ctx context1.Context, in *ActivityPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleActivityClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudGeneral_serviceDesc.Streams[1], "/cheropatillapb.CrudGeneral/RecycleActivity", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &crudGeneralRecycleActivityClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CrudGeneral_RecycleActivityClient interface {
+	Recv() (*ContentRule, error)
+	grpc.ClientStream
+}
+
+type crudGeneralRecycleActivityClient struct {
+	grpc.ClientStream
+}
+
+func (x *crudGeneralRecycleActivityClient) Recv() (*ContentRule, error) {
+	m := new(ContentRule)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *crudGeneralClient) RecycleSaved(ctx context1.Context, in *SavedPattern, opts ...grpc.CallOption) (CrudGeneral_RecycleSavedClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_CrudGeneral_serviceDesc.Streams[2], "/cheropatillapb.CrudGeneral/RecycleSaved", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &crudGeneralRecycleSavedClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type CrudGeneral_RecycleSavedClient interface {
+	Recv() (*ContentRule, error)
+	grpc.ClientStream
+}
+
+type crudGeneralRecycleSavedClient struct {
+	grpc.ClientStream
+}
+
+func (x *crudGeneralRecycleSavedClient) Recv() (*ContentRule, error) {
+	m := new(ContentRule)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// CrudGeneralServer is the server API for CrudGeneral service.
+type CrudGeneralServer interface {
+	// Get new feed of threads in general (from multiple sections)
+	RecycleGeneral(*GeneralPattern, CrudGeneral_RecycleGeneralServer) error
+	// Get new activity from either multiple users or a single user.
+	RecycleActivity(*ActivityPattern, CrudGeneral_RecycleActivityServer) error
+	// Get new feed of saved threads of a user
+	RecycleSaved(*SavedPattern, CrudGeneral_RecycleSavedServer) error
+}
+
+// UnimplementedCrudGeneralServer can be embedded to have forward compatible implementations.
+type UnimplementedCrudGeneralServer struct {
+}
+
+func (*UnimplementedCrudGeneralServer) RecycleGeneral(req *GeneralPattern, srv CrudGeneral_RecycleGeneralServer) error {
+	return status.Errorf(codes.Unimplemented, "method RecycleGeneral not implemented")
+}
+func (*UnimplementedCrudGeneralServer) RecycleActivity(req *ActivityPattern, srv CrudGeneral_RecycleActivityServer) error {
+	return status.Errorf(codes.Unimplemented, "method RecycleActivity not implemented")
+}
+func (*UnimplementedCrudGeneralServer) RecycleSaved(req *SavedPattern, srv CrudGeneral_RecycleSavedServer) error {
+	return status.Errorf(codes.Unimplemented, "method RecycleSaved not implemented")
+}
+
+func RegisterCrudGeneralServer(s *grpc.Server, srv CrudGeneralServer) {
+	s.RegisterService(&_CrudGeneral_serviceDesc, srv)
+}
+
+func _CrudGeneral_RecycleGeneral_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GeneralPattern)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CrudGeneralServer).RecycleGeneral(m, &crudGeneralRecycleGeneralServer{stream})
+}
+
+type CrudGeneral_RecycleGeneralServer interface {
+	Send(*ContentRule) error
+	grpc.ServerStream
+}
+
+type crudGeneralRecycleGeneralServer struct {
+	grpc.ServerStream
+}
+
+func (x *crudGeneralRecycleGeneralServer) Send(m *ContentRule) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _CrudGeneral_RecycleActivity_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ActivityPattern)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CrudGeneralServer).RecycleActivity(m, &crudGeneralRecycleActivityServer{stream})
+}
+
+type CrudGeneral_RecycleActivityServer interface {
+	Send(*ContentRule) error
+	grpc.ServerStream
+}
+
+type crudGeneralRecycleActivityServer struct {
+	grpc.ServerStream
+}
+
+func (x *crudGeneralRecycleActivityServer) Send(m *ContentRule) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _CrudGeneral_RecycleSaved_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SavedPattern)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(CrudGeneralServer).RecycleSaved(m, &crudGeneralRecycleSavedServer{stream})
+}
+
+type CrudGeneral_RecycleSavedServer interface {
+	Send(*ContentRule) error
+	grpc.ServerStream
+}
+
+type crudGeneralRecycleSavedServer struct {
+	grpc.ServerStream
+}
+
+func (x *crudGeneralRecycleSavedServer) Send(m *ContentRule) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+var _CrudGeneral_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "cheropatillapb.CrudGeneral",
+	HandlerType: (*CrudGeneralServer)(nil),
+	Methods:     []grpc.MethodDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "RecycleGeneral",
+			Handler:       _CrudGeneral_RecycleGeneral_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "RecycleActivity",
+			Handler:       _CrudGeneral_RecycleActivity_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "RecycleSaved",
+			Handler:       _CrudGeneral_RecycleSaved_Handler,
 			ServerStreams: true,
 		},
 	},
